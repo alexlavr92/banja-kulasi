@@ -1983,8 +1983,8 @@ display: none;
     display: block;
     margin-left: 54px;
 } 
-  .header-select-wrapper  > .select-default {
-      width: 62px;
+  .header-select-wrapper > .select-default {
+      width: 65px;
       border: none;
       outline: none;
       background: transparent;
