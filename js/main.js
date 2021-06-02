@@ -1006,7 +1006,7 @@ jQuery(document).ready(function ($) {
     })
     //----------------------//
 
-    $('body').on('click touchend', '.menu-list-li.with-dropdown > .menu-link', function (e) {
+    $('body').on('click', '.menu-list-li.with-dropdown > .menu-link', function (e) {
         if (docWidth < 1200) {
             e.preventDefault()
             $(this).parent('.with-dropdown').toggleClass('open')
