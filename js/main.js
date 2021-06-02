@@ -923,6 +923,8 @@ jQuery(document).ready(function ($) {
             delayMenuLink = 0, menuIndex
         if (!MenuWrapper.hasClass('open')) {
             MenuWrapper.addClass('open scroll-disabled')
+            if (docWidth < 1200)
+                blockScroll('open')
             MenuWrapper.find('.menu-overlay').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function (e) {
                 menuIndex = 0
                 MenuWrapper.addClass('open-end')
@@ -962,7 +964,6 @@ jQuery(document).ready(function ($) {
             })
         }
         else {
-            console.log('click')
             if (docWidth < 1200) {
                 MenuWrapper = $(this).parent('.menu-wrapper')
             }
@@ -991,6 +992,7 @@ jQuery(document).ready(function ($) {
                         /*  MenuWrapper.addClass('open-end') */
                         if (docWidth < 1200) {
                             MenuWrapper.find('.with-dropdown.open').removeClass('open')
+                            blockScroll('close')
                         }
                         MenuWrapper.removeClass('open open-end scroll-disabled')
                         clearTimeout(TimerMenuLink)

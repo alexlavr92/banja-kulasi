@@ -1174,9 +1174,11 @@ border-radius: 0 !important;
     .pagination-list {
         display: none;
     }
-    body, html {
-        overflow: hidden !important;
-        overflow-y: visible !important;
+    html {
+        overflow: visible !important;
+    }
+    body {
+        overflow-y: auto !important;
         overflow-x: hidden !important;
     }
 }
@@ -1211,7 +1213,6 @@ header.bg-grey {
 }
 
 .header > .new-container {
-    min-height: 124px;
     height: 124px;
     -webkit-box-align: center;
         -ms-flex-align: center;
@@ -1784,7 +1785,6 @@ display: none;
         left: 0;
         border-radius: 0;
         background: transparent;
-      /*   overflow: hidden; */
         position: fixed;
     }
     .menu-wrapper > .menu-overlay:before {
@@ -1821,8 +1821,6 @@ display: none;
         opacity: 0;
         max-height: 0;
         flex-wrap: nowrap;
-     /*    display: none; */
-       /*  transform: translateY(-100%); */
         transition: opacity 1s ease, max-height .5s ease, visibility 1s ease, padding .8s ease;
     }
       .menu-block > .menu-list > .menu-list-li.with-dropdown.open > .menu-list.level-2 {
@@ -1831,7 +1829,6 @@ display: none;
         max-height: 1000px;
         padding-bottom: 40px;
         transition: opacity 1s ease, max-height 1s ease, visibility 1s ease, padding .5s ease;
-        /* transform: translateY(0); */
     }
     .menu-wrapper > .menu-block {
         width: 100%;
@@ -1917,6 +1914,62 @@ display: none;
          margin-left: 20px;
      }
 }
+
+@media screen and (max-width: 767px) {
+    .menu-wrapper > .header-menu-btn {
+        right: 20px;
+        top: 22px;
+        left: auto;
+    }
+    .menu-wrapper > .menu-overlay {
+        left: auto;
+        right: 0;
+    }
+    .menu-wrapper > .menu-overlay:before {
+        left: auto;
+        right: -50%;
+    }
+    .menu-wrapper > .menu-overlay:before {
+        width: 90rem;
+        height: 90rem;
+    }
+    .menu-wrapper.open > .menu-overlay:before {
+        max-width: 90rem;
+        right: -100%;
+        max-height: 90rem;
+    }
+    .menu-block .menu-list.level-2 > .menu-list-li {
+        width: 100%;
+    }
+    .menu-wrapper .menu-bottom {
+        padding: 30px 0 60px;
+    }
+    .menu-bottom-copyright {
+        max-width: none;
+        width: 100%;
+    }
+    .menu-bottom-contact {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 0;
+        margin-top: 30px;
+    }
+    .menu-bottom-contact > a {
+        order: -1;
+        margin-left: 0;
+        font-size: 30px;
+        line-height: 100%;
+        margin-bottom: 10px;
+    }
+    .menu-bottom-develop > span:first-child {
+        width: 100%;
+        margin-bottom: 18px;
+    }
+    .menu-bottom-develop .develop-one {
+        margin-left: 0;
+    }
+}
 /* ---End Menu CSS --- */
 
 @media screen and (max-width: 1199px) {
@@ -1959,7 +2012,7 @@ header.dark   .header-select-wrapper  > .select-default {
     width: 34px;
     height: 24px;
     padding-right: 0;
-    margin-right: 20px;
+  /*   margin-right: 20px; */
 }
 .header-menu-btn > span:first-child {
     display: none;
@@ -1971,7 +2024,7 @@ header.dark   .header-select-wrapper  > .select-default {
     
 }
  .header > .new-container {
-        min-height: 120px;
+        height: 120px;
     } 
     .header .btn {
         margin-left: auto;
@@ -1984,6 +2037,40 @@ header.dark   .header-select-wrapper  > .select-default {
         -webkit-transform: none;
             -ms-transform: none;
                 transform: none;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .header > .new-container {
+        height: 70px;
+    }
+    .header .btn,
+    .header-social-wrapper {
+        display: none;
+    }
+    .header-logo {
+        order: 1;
+        width: 131px;
+    }
+    .header-select-wrapper {
+        order: 2;
+        margin-left: auto;
+        margin-right: 28px;
+    }
+    .menu-wrapper + .header-menu-btn {
+        order: 3;
+        position: relative;
+        top: 0;
+        transform: none;
+        left: auto;
+        right: auto;
+        bottom: auto;
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .header-menu-btn > span:last-child {
+        left: auto;
+        right: 0;
     }
 }
 /* --- End 02 Header CSS --- */
