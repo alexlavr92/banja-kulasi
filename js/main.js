@@ -912,13 +912,20 @@ jQuery(document).ready(function ($) {
     // Функционал открытия меню 
     $('body').on('click touchend', '.header-menu-btn', function (e) {
         e.preventDefault()
-        var MenuWrapper = $(this).prev('.menu-wrapper'),
-            AllMenuLink = MenuWrapper.find('.menu-block > .menu-list > .menu-list-li'),
+        var MenuWrapper
+        if (docWidth < 1200 && $(this).parent('.menu-wrapper.open').length) {
+            MenuWrapper = $(this).parent('.menu-wrapper.open')
+        }
+        else {
+            MenuWrapper = $(this).prev('.menu-wrapper')
+        }
+        var AllMenuLink = MenuWrapper.find('.menu-block > .menu-list > .menu-list-li'),
             delayMenuLink = 0, menuIndex
         if (!MenuWrapper.hasClass('open')) {
             MenuWrapper.addClass('open scroll-disabled')
             MenuWrapper.find('.menu-overlay').one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function (e) {
                 menuIndex = 0
+                MenuWrapper.addClass('open-end')
                 let TimerMenuLink = setTimeout(function fadeMenuLink() {
                     if (MenuWrapper.hasClass('open')) {
                         if (menuIndex <= AllMenuLink.length - 1) {
@@ -945,6 +952,7 @@ jQuery(document).ready(function ($) {
                             clearTimeout(TimerMenuLink)
                             TimerMenuLink = null
                         }
+                        MenuWrapper.removeClass('open-end')
                         AllMenuLink.each(function () {
                             $(this).removeClass('visible')
                         })
@@ -954,6 +962,10 @@ jQuery(document).ready(function ($) {
             })
         }
         else {
+            console.log('click')
+            if (docWidth < 1200) {
+                MenuWrapper = $(this).parent('.menu-wrapper')
+            }
             menuIndex = AllMenuLink.length - 1
             // console.log(menuIndex)
             let TimerMenuLink = setTimeout(function fadeMenuLink() {
@@ -976,7 +988,11 @@ jQuery(document).ready(function ($) {
                         TimerMenuLink = setTimeout(fadeMenuLink, delayMenuLink)
                     }
                     else {
-                        MenuWrapper.removeClass('open scroll-disabled')
+                        /*  MenuWrapper.addClass('open-end') */
+                        if (docWidth < 1200) {
+                            MenuWrapper.find('.with-dropdown.open').removeClass('open')
+                        }
+                        MenuWrapper.removeClass('open open-end scroll-disabled')
                         clearTimeout(TimerMenuLink)
                         TimerMenuLink = null
                         return false
@@ -987,6 +1003,14 @@ jQuery(document).ready(function ($) {
         return false
     })
     //----------------------//
+
+    $('body').on('click touchend', '.menu-list-li.with-dropdown > .menu-link', function (e) {
+        if (docWidth < 1200) {
+            e.preventDefault()
+            $(this).parent('.with-dropdown').toggleClass('open')
+            return false;
+        }
+    })
 
 }) // окончание ready
 
@@ -1183,6 +1207,7 @@ $(window).on('resize', function (e) {
     }
     if (NewDocWidth != docWidth) {
         InitPaginationDownBtn(NewDocWidth)
+        docWidth = NewDocWidth
     }
 })
 
