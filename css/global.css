@@ -1813,6 +1813,7 @@ display: none;
         padding: 104px 20px 0;
          overflow-x: hidden;
          overflow-y: auto;
+         -webkit-overflow-scrolling: touch;
     }
  /*    .menu-wrapper.open-end {
        
