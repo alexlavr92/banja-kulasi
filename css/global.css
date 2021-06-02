@@ -1178,8 +1178,7 @@ border-radius: 0 !important;
         overflow: visible !important;
     }
     body {
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
+       overflow: hidden !important;
     }
 }
 @media screen and (max-width: 767px) {
