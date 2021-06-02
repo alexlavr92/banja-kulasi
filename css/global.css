@@ -1811,10 +1811,12 @@ display: none;
 
     .menu-wrapper {
         padding: 104px 20px 0;
+         overflow-x: hidden;
+         overflow-y: auto;
     }
-    .menu-wrapper.open-end {
-        overflow: auto;
-    }
+ /*    .menu-wrapper.open-end {
+       
+    } */
     .menu-block .menu-list.level-2 {
         overflow: hidden;
         visibility: hidden;
