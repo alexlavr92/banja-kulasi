@@ -1483,7 +1483,7 @@ header.dark .btn {
 
 .menu-wrapper:not(.open) {
     visibility: hidden;
-    z-index: -1;
+    /* z-index: -1; */
 } 
 
 .menu-wrapper > .menu-overlay {
