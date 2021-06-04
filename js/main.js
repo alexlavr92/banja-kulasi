@@ -48,10 +48,12 @@ var blockScroll = function (state) {
 
 // Функция установки высоты блока без учета высоты header
 let EditHeightDescrWrap = function () {
-    if ($('.sb-description-wrapper').length) {
-        $('.sb-description-wrapper').css({
-            'padding-top': $('header').innerHeight() + 'px',
-        })
+    if (docWidth >= 1200) {
+        if ($('.sb-description-wrapper').length) {
+            $('.sb-description-wrapper').css({
+                'padding-top': $('header').innerHeight() + 'px',
+            })
+        }
     }
 }
 //----------------------//
@@ -88,8 +90,9 @@ let EditSb_Bg_wrapperTop = function (bg_elem) {
 // Функционал создания пагинации//
 let InitPaginationDownBtn = function (docWidth) {
 
-    if ($('.sb-section').length > 1 && docWidth >= 1200) {
-        if (!$('.pagination-list.pagination-column').length) {
+    if ($('.sb-section').length > 1) {
+        if (docWidth >= 1200 && !$('.pagination-list.pagination-column').length) {
+            console.log('pagination')
             var PaginationWrapper
             if ($('.sb-section:first-child').hasClass('sb-section-dark')) {
                 PaginationWrapper = '<ul class="pagination-list pagination-column light flex-block"></ul>'
@@ -110,6 +113,13 @@ let InitPaginationDownBtn = function (docWidth) {
                 }
                 $('.pagination-li:last-child').children('span').text(PaginationItemText)
             }
+        }
+        else {
+            if ($('.pagination-list.pagination-column').length) {
+                $('.pagination-list.pagination-column').remove()
+            }
+        }
+        if (!$('.btn-section-wrapper').length) {
             var BtnDownwrapper = '<div class="btn-section-wrapper"><a href="javascript: void(0)" class="arrow-down-link"><span></span></a></div>'
             $(BtnDownwrapper).insertAfter('header').hide()
             if ($('.sb-section:first-child').hasClass('sb-section-dark')) {
@@ -118,14 +128,7 @@ let InitPaginationDownBtn = function (docWidth) {
             $('.btn-section-wrapper').fadeIn()
         }
     }
-    else {
-        if ($('.pagination-list.pagination-column').length) {
-            $('.pagination-list.pagination-column').remove()
-        }
-        if ($('.btn-section-wrapper').length) {
-            $('.btn-section-wrapper').remove()
-        }
-    }
+
 }
 //----------------------//
 
@@ -166,6 +169,12 @@ jQuery(document).ready(function ($) {
             $(elem).css({
                 '-webkit-transform': 'translate3d(0, ' + $(elem).attr('animate-offset') + 'px, 0)',
                 'transform': 'translate3d(0, ' + $(elem).attr('animate-offset') + 'px, 0)',
+                '-webkit-transition-delay': $(elem).attr('animate-delay') + 'ms',
+                '-o-transition-delay': $(elem).attr('animate-delay') + 'ms',
+                'transition-delay': $(elem).attr('animate-delay') + 'ms',
+                '-webkit-transition-duration': $(elem).attr('animate-duration') + 'ms',
+                '-o-transition-duration': $(elem).attr('animate-duration') + 'ms',
+                'transition-duration': $(elem).attr('animate-duration') + 'ms',
             })
         })
     }
@@ -193,21 +202,30 @@ jQuery(document).ready(function ($) {
                 abs_slider[SliderIndex].update()
                 SliderIndex = SliderIndex + 1
             }
-            if ($(this).index() == 0) {
+            if (($(this).index() == 0 && docWidth > 1200) ||
+                docWidth < 1200) {
                 AllSectionAnimateElem.each(function (i, elem) {
                     $(elem).css({
                         '-webkit-transform': 'translate3d(0, 0, 0)',
-                        'transform': 'translate3d(0, 0, 0)',
-                        '-webkit-transition-delay': $(elem).attr('animate-delay') + 'ms',
-                        '-o-transition-delay': $(elem).attr('animate-delay') + 'ms',
-                        'transition-delay': $(elem).attr('animate-delay') + 'ms',
-                        '-webkit-transition-duration': $(elem).attr('animate-duration') + 'ms',
-                        '-o-transition-duration': $(elem).attr('animate-duration') + 'ms',
-                        'transition-duration': $(elem).attr('animate-duration') + 'ms',
+                        'transform': 'translate3d(0, 0, 0)'
                     })
                 })
             }
+            if (docWidth < 1200) {
+                if ($(this).hasClass('sb-section-light')) {
+                    /*    console.log('светлая') */
+                    EditHeader($('header'), 'light')
+                }
+                else if ($(this).hasClass('sb-section-dark')) {
+                    /*  console.log('темная') */
+                    EditHeader($('header'), 'dark')
+                    if ($(this).hasClass('sb-section-chok')) {
+                        $('header').find('.btn-transparent').addClass('btn-dark')
+                    }
+                }
+            }
         }
+
         /*       else {
                  //console.log('нет active')
                 //   console.log('remove class ' + $(this).index())
@@ -343,16 +361,16 @@ jQuery(document).ready(function ($) {
                     if (ActionSection.prev().hasClass('sb-section-dark') && ActionSection.hasClass('sb-section-dark')) {
                         if (ActionSection.prev().hasClass('sb-section-chok')) {
                             ActionSection.prev().addClass('chok')
-                            $('body').addClass('chok')
+                            //   $('body').addClass('chok')
                         }
                         else {
                             ActionSection.prev().addClass('dark')
-                            $('body').addClass('dark')
+                            //  $('body').addClass('dark')
                         }
                     }
                     if (ActionSection.prev().hasClass('sb-section-light') && ActionSection.hasClass('sb-section-light')) {
                         ActionSection.prev().addClass('white')
-                        $('body').addClass('white')
+                        // $('body').addClass('white')
                     }
                     var AllSectionPrev = ActionSection.prevUntil()
                     var AllSectionAnimateElem = ActionSection.find('.animate')
@@ -360,12 +378,6 @@ jQuery(document).ready(function ($) {
                         $(elem).css({
                             '-webkit-transform': 'translate3d(0, 0, 0)',
                             'transform': 'translate3d(0, 0, 0)',
-                            '-webkit-transition-delay': $(elem).attr('animate-delay') + 'ms',
-                            '-o-transition-delay': $(elem).attr('animate-delay') + 'ms',
-                            'transition-delay': $(elem).attr('animate-delay') + 'ms',
-                            '-webkit-transition-duration': $(elem).attr('animate-duration') + 'ms',
-                            '-o-transition-duration': $(elem).attr('animate-duration') + 'ms',
-                            'transition-duration': $(elem).attr('animate-duration') + 'ms',
                         })
                     })
                     AllSectionPrev.each(function () {
@@ -382,16 +394,16 @@ jQuery(document).ready(function ($) {
                     if (ActionSection.next().hasClass('sb-section-dark') && ActionSection.hasClass('sb-section-dark')) {
                         if (ActionSection.next().hasClass('sb-section-chok')) {
                             ActionSection.addClass('chok')
-                            $('body').addClass('chok')
+                            // $('body').addClass('chok')
                         }
                         else {
                             ActionSection.addClass('dark')
-                            $('body').addClass('dark')
+                            // $('body').addClass('dark')
                         }
                     }
                     if (ActionSection.next().hasClass('sb-section-light') && ActionSection.hasClass('sb-section-light')) {
                         ActionSection.addClass('white')
-                        $('body').addClass('white')
+                        // $('body').addClass('white')
                     }
                     var AllSectionNext = ActionSection.nextAll()
                     //  console.log(AllSectionNext) 
@@ -409,12 +421,6 @@ jQuery(document).ready(function ($) {
                             $(elem).css({
                                 '-webkit-transform': 'translate3d(0, ' + $(elem).attr('animate-offset') + 'px, 0)',
                                 'transform': 'translate3d(0, ' + $(elem).attr('animate-offset') + 'px, 0)',
-                                '-webkit-transition-delay': $(elem).attr('animate-delay') + 'ms',
-                                '-o-transition-delay': $(elem).attr('animate-delay') + 'ms',
-                                'transition-delay': $(elem).attr('animate-delay') + 'ms',
-                                '-webkit-transition-duration': $(elem).attr('animate-duration') + 'ms',
-                                '-o-transition-duration': $(elem).attr('animate-duration') + 'ms',
-                                'transition-duration': $(elem).attr('animate-duration') + 'ms',
                             })
                         })
                     })
@@ -451,41 +457,6 @@ jQuery(document).ready(function ($) {
                 if ($('.select2-container--open:not(.select2)').length) {
                     $('.select-custom').select2('close')
                 }
-                let EditHeader = function (header, theme) {
-                    var settingsHeader
-                    if (theme == 'light') {
-                        settingsHeader = {
-                            headerRemoveClass: 'dark',
-                            headerAddClass: 'light',
-                            headerRemoveBtnClass: 'btn-dark',
-                            headerAddBtnClass: 'btn-white',
-                            // durationFadeIn: 200, 
-                        }
-                    }
-                    if (theme == 'dark') {
-                        settingsHeader = {
-                            headerRemoveClass: 'light',
-                            headerAddClass: 'dark',
-                            headerRemoveBtnClass: 'btn-white',
-                            headerAddBtnClass: 'btn-dark',
-                            //durationFadeIn: 200,
-                        }
-                    }
-                    if (!header.hasClass(theme)) {
-                        header.removeClass(settingsHeader.headerRemoveClass).addClass(theme)
-                        header.find('.btn.' + settingsHeader.headerRemoveBtnClass).removeClass(settingsHeader.headerRemoveBtnClass).
-                            addClass(settingsHeader.headerAddBtnClass)
-                        var ThisLogo = header.find('.header-logo > img').attr('src')
-                        header.find('.header-logo > img').attr('src', header.find('.header-logo > img').attr('src-new'))
-                        header.find('.header-logo > img').attr('src-new', ThisLogo)
-                        var AllSocialLogo = header.find('.header-social-link > img')
-                        AllSocialLogo.each(function (i, elem) {
-                            var ThisImg = $(elem).attr('src')
-                            $(elem).attr('src', $(elem).attr('src-new'))
-                            $(elem).attr('src-new', ThisImg)
-                        })
-                    }
-                }
                 if (ActionSection.hasClass('sb-section-light')) {
                     EditHeader($('header'), 'light')
                 }
@@ -499,7 +470,7 @@ jQuery(document).ready(function ($) {
             afterMove: function (next, current) {
                 var ActionSection = $('.section:nth-child(' + next + ')')
                 setTimeout(function () {
-                    $('body').removeClass('dark white chok')
+                    // $('body').removeClass('dark white chok') 
                     ActionSection.prev().removeClass('dark white chok')
                     ActionSection.removeClass('dark white chok')
                     $('.section.scroll-top').removeClass('scroll-top')
@@ -528,8 +499,16 @@ jQuery(document).ready(function ($) {
 
     // Обработчик клика на кнопку вниз //
     $('body').on('click', '.btn-section-wrapper > .arrow-down-link', function (e) {
-        var page_index = $('section.active').next().index()
-        $.fn.moveTo(page_index + 1)
+        var page_index
+        if (docWidth >= 1200) {
+            var page_index = $('section.active').next().index()
+            $.fn.moveTo(page_index + 1)
+        }
+        else {
+            var scrollTo = $('.section.active').next().offset().top
+            $('html,body').stop().animate({ scrollTop: scrollTo }, 1000);
+            e.preventDefault();
+        }
     })
     //----------------------//
 
@@ -822,17 +801,24 @@ jQuery(document).ready(function ($) {
 
 
     // Обработчик клика на якорную ссылку
-    if (docWidth >= 1200) {
-        $('body').on('click touchend', '[data-click]', function (e) {
-            e.preventDefault()
-            var ThisHashIndex = $('#' + $(this).attr('data-click')).index()
+
+    $('body').on('click touchend', '[data-click]', function (e) {
+        e.preventDefault()
+        var ThisHashIndex
+        if (docWidth >= 1200) {
+            ThisHashIndex = $('#' + $(this).attr('data-click')).index()
             $.fn.moveTo(ThisHashIndex + 1)
-        })
-    }
+        }
+        else {
+            ThisHashIndex = $('#' + $(this).attr('data-click'))
+            $('html,body').stop().animate({ scrollTop: ThisHashIndex.offset().top + 1 }, 1000);
+        }
+    })
+
     //----------------------//
 
     // Функционал табов // 
-    $('body').on('click touchend', '.tabs-wrapper .tab-switcher:not(.active) > a', function (e) {
+    $('body').on('click', '.tabs-wrapper .tab-switcher:not(.active) > a', function (e) {
         e.preventDefault()
         var ThisSwitcher = $(this).closest('.tab-switcher'),
             ThisIndex = ThisSwitcher.index(),
@@ -890,8 +876,6 @@ jQuery(document).ready(function ($) {
     //----------------------//
 
 
-    ScrollSectionAdaptive()
-    //----------------------//
 
     if ($('.sb-section-top .slider-wrapper').length) {
         InitTopSlider($('.sb-section-top .slider-wrapper'))
@@ -1014,26 +998,124 @@ jQuery(document).ready(function ($) {
         }
     })
 
+    ScrollSectionAdaptive()
+    //----------------------//
 }) // окончание ready
 
-
-
+// Функция изменения темы header
+let EditHeader = function (header, theme) {
+    var settingsHeader
+    if (theme == 'light') {
+        settingsHeader = {
+            headerRemoveClass: 'dark',
+            headerAddClass: 'light',
+            headerRemoveBtnClass: 'btn-dark',
+            headerAddBtnClass: 'btn-white',
+            // durationFadeIn: 200, 
+        }
+    }
+    if (theme == 'dark') {
+        settingsHeader = {
+            headerRemoveClass: 'light',
+            headerAddClass: 'dark',
+            headerRemoveBtnClass: 'btn-white',
+            headerAddBtnClass: 'btn-dark',
+            //durationFadeIn: 200,
+        }
+    }
+    if (!header.hasClass(theme)) {
+        header.removeClass(settingsHeader.headerRemoveClass).addClass(theme)
+        header.find('.btn.' + settingsHeader.headerRemoveBtnClass).removeClass(settingsHeader.headerRemoveBtnClass).
+            addClass(settingsHeader.headerAddBtnClass)
+        var ThisLogo = header.find('.header-logo > img').attr('src')
+        header.find('.header-logo > img').attr('src', header.find('.header-logo > img').attr('src-new'))
+        header.find('.header-logo > img').attr('src-new', ThisLogo)
+        var AllSocialLogo = header.find('.header-social-link > img')
+        AllSocialLogo.each(function (i, elem) {
+            var ThisImg = $(elem).attr('src')
+            $(elem).attr('src', $(elem).attr('src-new'))
+            $(elem).attr('src-new', ThisImg)
+        })
+    }
+}
+//----------------------//
 
 
 let ScrollSectionAdaptive = function () {
     if (docWidth < 1200) {
-        var NextSection = $('.section.active').next()
+        var lastScrollTop = 0,
+            NextSection,
+            ActiveSection
+
+        if ($(window).scrollTop() == 0) {
+            ActiveSection = $('.section.active')
+        }
+        else {
+            var AllSection = $('.section')
+            AllSection.each(function () {
+                if ($(window).scrollTop() > $(this).offset().top) {
+                    ActiveSection = $(this)
+                    $('.section.active').removeClass('active')
+                    ActiveSection.addClass('active')
+                }
+            })
+        }
+
+        // console.log(ActiveSection)
+        // console.log('начальный скролл ' + $(window).scrollTop())
         $(window).scroll(function (e) {
             var ScrollTop = $(window).scrollTop()
-            /*   console.log(ScrollTop) */
-            if (ScrollTop >= (NextSection.offset().top - $('header').innerHeight())) {
-                NextSection.addClass('active')
-                NextSection = NextSection.next()
-                /*     console.log(ActiveSection.offset().top) */
-                /*  console.log('отступ-сверху ' + ActiveSection.offset().top) */
+            // console.log(ScrollTop)
+            if (ScrollTop >= lastScrollTop) {
+                if (ScrollTop > ((ActiveSection.offset().top + ActiveSection.innerHeight()) - $('header').innerHeight())) {
+                    NextSection = ActiveSection.next()
+                    NextSection.addClass('active')
+                    ActiveSection.removeClass('active')
+                    ActiveSection = NextSection
+                    if (ActiveSection.is(':last-child')) {
+                        console.log('последняя')
+                        $('.btn-section-wrapper').fadeOut(100)
+                    }
+                    // console.log(ActiveSection)
+                }
             }
+            else {
+                if (ScrollTop <= ActiveSection.offset().top && ScrollTop != 0) {
+                    let ControlSection = function (nextSection, sectioAddTheme) {
+                        nextSection.addClass(sectioAddTheme)
+                        let timerId = setTimeout(function () {
+                            nextSection.removeClass(sectioAddTheme)
+                            clearTimeout(timerId);
+                        }, 400);
+                    }
+                    NextSection = ActiveSection.prev()
+                    NextSection.addClass('active')
+                    if (NextSection.hasClass('sb-section-dark') && ActiveSection.hasClass('sb-section-dark')) {
+                        ControlSection(NextSection, 'dark')
+                    }
+                    if (NextSection.hasClass('sb-section-light') && ActiveSection.hasClass('sb-section-light')) {
+                        ControlSection(NextSection, 'white')
+                    }
+                    ActiveSection.removeClass('active')
+                    ActiveSection = NextSection
+                    if (!ActiveSection.is(':last-child')) {
+                        // console.log('последняя')
+                        $('.btn-section-wrapper').fadeIn()
+                    }
+                    // console.log(ActiveSection)
+                }
+                // console.log('наверх')
+            }
+            if (ActiveSection.hasClass('sb-section-light')) {
+                $('.btn-section-wrapper .arrow-down-link.dark').removeClass('dark').addClass('light')
+            }
+            else {
+                $('.btn-section-wrapper .arrow-down-link.light').removeClass('light').addClass('dark')
+            }
+            lastScrollTop = ScrollTop;
         })
     }
+    else return false
 }
 
 
@@ -1076,9 +1158,11 @@ let InitTopSlider = function (slider) {
 
 // Вычисление высоты без header
 let EditSb_Bg_wrapper = function (elem) {
-    elem.css({
-        'height': ($(window).height() - $('header').innerHeight()) + 'px',
-    })
+    if (docWidth >= 1200) {
+        elem.css({
+            'height': ($(window).height() - $('header').innerHeight()) + 'px',
+        })
+    }
 }
 //----------------------//
 
@@ -1156,9 +1240,18 @@ let CheckAbsSliders = function (sliders) {
 }
 
 let EditAbsSliderWidth = function (sliders, DocWidth) {
-    /*   console.log('editwidth') */
+    console.log(DocWidth - (DocWidth - $('section .new-container').width()) + parseInt($('section .new-container').css('padding-right')))
+    console.log(DocWidth)
+    var SliderWidth
+    if (DocWidth >= 1200) {
+        SliderWidth = DocWidth - ((DocWidth - $('section .new-container').width()) / 2)
+    }
+    else {
+        SliderWidth = DocWidth - (DocWidth - $('section .new-container').width()) + parseInt($('section .new-container').css('padding-right'))
+    }
+    /*    console.log(SliderWidth) */
     sliders.css({
-        'width': (DocWidth - ((DocWidth - $('section .new-container').width()) / 2)) + 'px',
+        'width': SliderWidth + 'px',
     })
     sliders.find('.swiper-scrollbar').css({
         'width': $('section .new-container').width() + 'px'
@@ -1208,8 +1301,13 @@ $(window).on('resize', function (e) {
         }
     }
     if (NewDocWidth != docWidth) {
+        if (NewDocWidth < 1200) {
+            if ($('.slider-wrapper.full-width').length)
+                EditAbsSliderWidth($('.slider-wrapper.full-width'), NewDocWidth)
+        }
         InitPaginationDownBtn(NewDocWidth)
         docWidth = NewDocWidth
+        ScrollSectionAdaptive()
     }
 })
 

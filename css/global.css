@@ -942,7 +942,7 @@ border-radius: 0 !important;
 }
 
 .btn-section-wrapper {
-    position: absolute;
+    position: fixed;
     top: auto;
     opacity: 1;
     left: 4vw;
@@ -1114,6 +1114,12 @@ border-radius: 0 !important;
     will-change: transform;
 }
 
+@media screen and (min-width: 1200px) {
+    .pagination-item {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 1440px) {
     .new-container {
         min-width: 942px;
@@ -1164,12 +1170,12 @@ border-radius: 0 !important;
         min-width: auto;
         max-width: none;
         padding: 0 20px;
-        padding-left: 74px;
+        padding-left: 70px;
         margin: 0 auto;
     }
-    section > .new-container {
+/*     section > .new-container {
         min-height: 100vh;
-    }
+    } */
     .btn-section-wrapper,
     .pagination-list {
         display: none;
@@ -1177,15 +1183,75 @@ border-radius: 0 !important;
     html {
         overflow: visible !important;
     }
+    html, body {
+        position: inherit !important;
+        width: 100% !important;
+        height: auto !important;  
+    }
     body {
         overflow-y: auto !important;
         overflow-x: hidden !important;
     }
+    .pagination-item {
+        position: absolute;
+        top: 120px;
+        color: #ffffff;
+        left: 70px;
+        font-size: 25px;
+        z-index: 1;
+        line-height: 190%;
+        padding-left: 40px;
+    }
+    .sb-section-dark   .pagination-item {
+        color: #ffffff;
+    }
+
+    .sb-section-light   .pagination-item {
+        color: #242B31;
+    }
+
+    .pagination-item:before {
+        content: '';
+        position: absolute;
+        top: 55%;
+        transform: translateY(-50%);
+        width: 26px;
+        height: 1px;
+        left: 0;
+        border-radius: 5px;
+        background: #ffffff;
+    }
+
+    .sb-section-dark   .pagination-item:before {
+        background: #ffffff; 
+    }
+    .sb-section-light   .pagination-item:before {
+        background: #242B31; 
+    }
 }
 @media screen and (max-width: 767px) {
    .new-container {
-       padding: 0 20px;
+       padding: 0 30px;
    }
+    .btn-section-wrapper  {
+        display: none !important;
+    }
+    .pagination-item {
+        top: 80px;
+        left: 20px;
+    }
+    h2 {
+        font-size: 35px;
+        line-height: 110%;
+    }
+    h3 {
+        font-size: 14px;
+    }
+}
+@media screen and (max-width: 359px) {
+     .new-container {
+       padding: 0 20px;
+   }  
 }
 /* --- End 01 UI CSS --- */
 
@@ -1762,6 +1828,11 @@ display: none;
         opacity: 0;
         transition: all .5s ease;
     }
+    .menu-wrapper > .header-menu-btn > span:last-child:before,
+    .menu-wrapper > .header-menu-btn > span:last-child:after {
+        background-color: #ffffff !important;
+    }
+
  .menu-wrapper.open > .header-menu-btn {
      visibility: visible;
      opacity: 1;
@@ -1806,6 +1877,8 @@ display: none;
     }
     .menu-wrapper.open > .menu-overlay:before {
         max-width: 100rem;
+        top: -40%;
+        left: -60%;
         max-height: 100rem;
     }
 
@@ -1929,16 +2002,16 @@ display: none;
         right: 0;
     }
     .menu-wrapper > .menu-overlay:before {
-        left: auto;
+        left: auto !important;
+        top: -50% !important;
         right: -50%;
-    }
-    .menu-wrapper > .menu-overlay:before {
         width: 90rem;
         height: 90rem;
     }
     .menu-wrapper.open > .menu-overlay:before {
         max-width: 90rem;
         right: -100%;
+        top: -40% !important;
         max-height: 90rem;
     }
     .menu-block .menu-list.level-2 > .menu-list-li {
@@ -1976,9 +2049,15 @@ display: none;
 /* ---End Menu CSS --- */
 
 @media screen and (max-width: 1199px) {
+     header {
+         transition: background .5s ease;
+     }
     header.dark {
         background: #242B31;
     }
+      header.light {
+          background: #ffffff;
+      }
 
   .header-select-wrapper {
     display: block;
@@ -1997,12 +2076,19 @@ line-height: 100%;
 letter-spacing: 0.1em;
 text-transform: uppercase;
   }
-header.dark   .header-select-wrapper  > .select-default {
-    color: #ffffff;
-    background-image: url(../media/icons/select-down-white.svg);
+header   .header-select-wrapper  > .select-default {
     background-repeat: no-repeat;
     background-size: 16px 16px;
     background-position: 95% 48%;
+}
+header.dark   .header-select-wrapper  > .select-default {
+  background-image: url(../media/icons/select-down-white.svg);
+color: #ffffff;
+}
+
+header.light .header-select-wrapper > .select-default {
+    color: #242B31;
+    background-image: url(../media/icons/select-down-dark.svg);
 }
 
 
@@ -2143,17 +2229,16 @@ body.chok {
 }
 
 .sb-section .animate {
-    -webkit-transition-property: opacity, transform, visibility;
-    -o-transition-property:  opacity, transform, visibility;
     -webkit-transition-property:  opacity, visibility, -webkit-transform;
     transition-property:  opacity, visibility, -webkit-transform;
+    -o-transition-property:  opacity, transform, visibility;
     transition-property:  opacity, transform, visibility;
     transition-property:  opacity, transform, visibility, -webkit-transform;
       visibility: hidden;
     opacity: 0;
     will-change: opacity, transform, visibility;
-    -webkit-transform-style: flat;
-        transform-style: flat;
+/*     -webkit-transform-style: flat;
+        transform-style: flat; */
     
 }
 .sb-section:not(.active):not(.scroll-top) .animate {
@@ -2495,7 +2580,25 @@ border-color: transparent transparent transparent #ffffff;
 @media screen and (max-width: 1199px) {
     .sb-section {
         height: auto !important;
-        min-height: 100%;
+    /*     min-height: 100vh; */
+      /*   padding-top: 120px; */
+    }
+    section.active .sb-bg-wrapper,
+section.active .sb-bg-block,
+section.active .slider-wrapper{
+    opacity: 1;
+       -webkit-transition: opacity .5s;
+   -o-transition: opacity .5s;
+   transition: opacity .5s ;
+   -webkit-transition-delay: 0s;
+        -o-transition-delay: 0s;
+           transition-delay: 0s;
+}
+}
+
+@media screen and (max-width: 767px) {
+    .sb-section .description-text {
+        font-size: 16px;
     }
 }
 /* --- End 03 Standart Block CSS --- */
@@ -2624,6 +2727,85 @@ border-color: transparent transparent transparent #ffffff;
 .sb1-description-block > .links-blue-block {
     margin-top: 20px;
 }
+}
+
+@media screen and (max-width: 1199px) {
+    .sb1-bg-block, .sb1-bg-block.style2 {
+        position: relative;
+        width: 96%;
+        left: -70px;
+       /*  margin-top: 120px; */
+    }
+     .sb1-bg-block .sb-bg-wrapper {
+         height: 640px;
+     }
+     .sb1-description-wrapper {
+        position: relative;
+         margin-left: 0;
+        width: 78%;
+        margin-top: -2px;
+       /*  padding-bottom: 100px; */
+        transform: translateY(-33px);
+     }
+     .sb1-description-block, .sb1-description-block.style2 {
+        margin-left: 0;
+        margin-right: 0;
+    max-width: none;
+    width: 100%;
+     }
+     .sb1-description-block h2.heading {
+         left: 0;
+         margin-left: 0;
+     }
+     .sb1-description-block > *:not(h2.heading) {
+         padding-left: 70px;
+     }
+      .sb1-description-block .description-text > br {
+          display: none;
+      }
+      .sb1-section > .link-with-arrow {
+          position: relative;
+          right: auto;
+          left: auto;
+          margin-top: 30px;
+          margin-left: 140px;
+          margin-bottom: 50px;
+      }
+}
+@media screen and (max-width: 767px) {
+    .sb1-bg-block, .sb1-bg-block.style2 {
+        left: 0;
+        width: 100%;
+        margin: 0 -30px;
+        width: calc(100% + 60px);
+    }
+    .sb1-bg-block .sb-bg-wrapper {
+        height: 106vw;
+    }
+    .sb1-description-wrapper {
+        width: 100%;
+        transform: translateY(-20px);
+    }
+    .sb1-description-block > *:not(h2.heading) {
+        padding-left: 20px;
+    }
+    .sb1-section > .link-with-arrow {
+        margin-left: 50px;
+        font-size: 16px;
+    }
+   /*  .sb1-description-block > h3.heading {
+    font-size: 14px;
+} */
+}
+
+@media screen and (max-width: 359px) {
+    .sb1-bg-block, .sb1-bg-block.style2 {
+        margin: 0 -20px;
+        width: calc(100% + 40px);
+    }
+        .sb1-section > .link-with-arrow {
+        margin-left: 40px;
+    }  
 }
 /* --- End 04 Standart Block 01 CSS --- */
 
@@ -2803,6 +2985,51 @@ section:not(.active) .sb2-slider-wrapper {
     }
     .sb2-description-wrapper .sb2-content + .sb2-content {
         margin-top: 20px;
+    }
+}
+@media screen and (max-width: 1199px) {
+    .sb2-bg-block {
+        position: relative;
+        width: calc(100% + 90px);
+        transform: none;
+        margin-left: -70px;
+        top: 0;
+        right: auto;
+        left: auto;
+        bottom: auto;
+        height: auto;
+        margin-right: -20px;
+    }
+    .sb2-bg-block .sb-bg-wrapper {
+        height: 67vw;
+    }
+    .sb2-description-wrapper {
+        width: 100%;
+        max-width: 530px;
+        transform: translateY(-35px);
+    }
+}
+@media screen and (max-width: 767px) {
+    .sb2-bg-block {
+        margin: 0 -30px;
+        width: calc(100% + 60px);
+    }
+    .sb2-bg-block .sb-bg-wrapper {
+        height: 78vw;
+    }
+    .sb2-description-wrapper {
+        transform: translateY(-20px);
+        padding-left: 20px;
+    }
+    .sb-description-wrapper h2.heading {
+        margin-bottom: 30px;
+    }
+}
+
+@media screen and (max-width: 359px) {
+    .sb2-bg-block {
+        margin: 0 -20px;
+        width: calc(100% + 40px);
     }
 }
 /* --- End 05 Standart Block 02 CSS --- */
@@ -3010,6 +3237,72 @@ section:not(.active) .sb3-slider-wrapper {
  .sb3-description-block .btn-bron_wrapper {
      margin-top: 40px;
  }
+}
+
+@media screen and (max-width: 1199px) {
+    .sb3-section {
+        min-height: 1024px;
+    }
+    .sb3-bg-block {
+        position: relative;
+        width: 96%;
+        left: -70px;
+        top: auto;
+       /*  left: auto; */
+        bottom: auto;
+        right: auto;
+    }
+    .sb3-bg-block .sb-bg-wrapper {
+        height: 710px;
+    }
+    .sb3-description-wrapper {
+       position: relative;
+        left: auto;
+        margin-left: 0;
+        width: 100%;
+        bottom: auto;
+        right: auto;
+        max-width: 75%;
+        margin-top: 30px;
+    }
+    .sb3-description-wrapper .description-text.scrollbar-inner {
+        max-height: none;
+    }
+    .sb3-description-block, .sb3-description-block.style2 {
+        margin: 0;
+        width: 100%;
+    }
+    .sb3-description-wrapper > .link-with-arrow {
+        position: relative;
+        right: 0;
+        margin-top: 30px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .sb3-bg-block {
+    width: calc(100% + 60px);
+    margin: 0 -30px;
+    left: 0;
+    }
+    .sb3-bg-block .sb-bg-wrapper {
+        height: 106vw;
+    }
+    .sb3-description-wrapper {
+        width: 100%;
+        max-width: none;
+        padding-left: 20px;
+    }
+    .sb3-description-wrapper > .link-with-arrow  {
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 359px) {
+    .sb3-bg-block {
+    width: calc(100% + 40px);
+    margin: 0 -20px;
+    left: 0;
+    }
 }
 /* --- End 06 Standart Block 03 CSS --- */
 
@@ -3603,6 +3896,37 @@ line-height: 100%;
     .sb6-slider-wrapper.full-width .swiper-slide {
         max-width: 49vw;
         
+    }
+}
+@media screen and (max-width: 1199px) {
+    .sb6-slider-wrapper.full-width .swiper-container {
+        height: 50vw;
+    }
+    .sb6-slider-wrapper.full-width .swiper-slide {
+        max-width: 86vw;
+        margin-right: 20px;
+    }
+    .sb6-section .sb-description-wrapper > .link-with-arrow {
+        position: relative;
+        left: auto;
+        bottom: auto;
+        right: auto;
+        margin-left: 70px;
+        margin-top: 10px;
+    }
+}
+@media screen and (max-width: 767px) {
+    .sb6-slider-wrapper.full-width .swiper-slide {
+        max-width: 80vw;
+
+    }
+    .sb6-section .sb-description-wrapper > .link-with-arrow {
+        margin-left: 30px;
+    }
+}
+@media screen and (max-width: 359px) { 
+        .sb6-section .sb-description-wrapper > .link-with-arrow {
+        margin-left: 20px;
     }
 }
 /* --- End Standart Block 06 CSS --- */
