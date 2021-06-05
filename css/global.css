@@ -1180,26 +1180,16 @@ border-radius: 0 !important;
     .pagination-list {
         display: none;
     }
-    html {
-       /*  overflow: visible !important; */
-        overflow-x: hidden !important;
-        overflow-y: auto !important;
-    }
     html, body {
-        -webkit-transition: none !important;
-        -o-transition: none !important;
-        transition: none !important;
-        margin: inherit;
-        position: inherit !important;
-        width: inherit !important;
-        height: inherit !important;  
+        -webkit-transition: none;
+        -o-transition: none;
+        transition: none;
+        height: inherit;
+        background-color: #242B31; 
         -webkit-overflow-scrolling: touch;
+          overflow-x: hidden;
+        overflow-y: auto;
     }
-    body {
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-    }
-
     .pagination-item {
         position: absolute;
         top: 60px;

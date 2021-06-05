@@ -84,8 +84,8 @@ let EditSb_Bg_wrapperTop = function (bg_elem) {
     else {
         Height = windowHeight
     }
-    console.log(Height)
-    console.log(screen.availHeight)
+    // console.log(Height)
+    // console.log(screen.availHeight)
     bg_elem.css({
         'top': $('header').innerHeight() + 'px',
         'height': Height - $('header').innerHeight() + 'px',
@@ -711,18 +711,19 @@ jQuery(document).ready(function ($) {
             scrollbar: {
                 el: slider.next('.swiper-scrollbar'),
                 draggable: true,
-                dragSize: '330px',
+                dragSize: '330',
                 hide: true,
             },
-            /*     breakpoints: {
-                    1024: {
-                        slidesPerView: 4,
-                    },
-                    1200: {
-                        slidesPerView: 3,
-                        spaceBetween: 8,
-                    },
-                }, */
+            breakpoints: {
+                // 1024: {
+                //     slidesPerView: 4,
+                // },
+                1200: {
+                    scrollbar: {
+                        dragSize: '70',
+                    }
+                },
+            },
         })
     }
     if ($('.slider-wrapper.full-width').length) {
@@ -806,7 +807,7 @@ jQuery(document).ready(function ($) {
         }
         else {
             ThisHashIndex = $('#' + $(this).attr('data-click'))
-            $('html,body').stop().animate({ scrollTop: ThisHashIndex.offset().top + 1 }, 1000);
+            $('html,body').stop().animate({ scrollTop: ThisHashIndex.offset().top - $('header').innerHeight() }, 1000);
         }
     })
 
@@ -864,7 +865,17 @@ jQuery(document).ready(function ($) {
         $('.lightgallery').each(function () {
             InitLightGallery($(this))
             $(this).on('onAfterOpen.lg', function (e) {
+                // console.log(e.type)
                 $('.lg-outer').addClass('scroll-disabled')
+                if (docWidth < 1200) {
+                    blockScroll('open')
+                }
+            })
+            $(this).on('onBeforeClose.lg', function (e) {
+                // console.log(e.type)
+                if (docWidth < 1200) {
+                    blockScroll('close')
+                }
             })
         })
     }
@@ -1049,11 +1060,14 @@ let ScrollSectionAdaptive = function () {
             let AnimateToScroll = setTimeout(function () {
                 if ($(window).scrollTop() || window.pageYOffset != 0) {
                     var ScrollNow = window.pageYOffset
+                    if ($('.section.active').is(':last-child') || $('.section.active').is(':nth-last-child(2)')) {
+                        ScrollNow = ScrollNow + 50
+                    }
                     $('html,body').scrollTop(0)
                     $('body, html').css('opacity', '0')
                     $('html,body').stop().animate(
-                        { scrollTop: ScrollNow + 20 }, {
-                        duration: 300,
+                        { scrollTop: ScrollNow }, {
+                        duration: 400,
                         complete: function () {
                             $('body, html').css('opacity', '1')
                         }
