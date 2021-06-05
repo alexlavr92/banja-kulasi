@@ -1038,7 +1038,11 @@ let ScrollSectionAdaptive = function () {
             ActiveSection,
             ElemAnimateIndex = 0,
             AllElemAnimate = $('.sb-section .sb-description-wrapper')
-        console.log()
+        if ($('.ios.mobile').length) {
+            $(window).scrollTop(0)
+            console.log($(window).scrollTop())
+        }
+        console.log($(window).scrollTop())
         if ($(window).scrollTop() <= 0) {
             ActiveSection = $('.section.active')
             AllElemAnimate.eq(ElemAnimateIndex).addClass('animate-init')
@@ -1064,10 +1068,9 @@ let ScrollSectionAdaptive = function () {
             }
         }
         AnimationSection(ActiveSection)
-        // console.log(AllElemAnimate)
         $(window).scroll(function (e) {
             var ScrollTop = $(window).scrollTop()
-            // console.log(ScrollTop)
+            console.log(ScrollTop)
             if (ScrollTop >= lastScrollTop) {
                 if (ScrollTop > (ActiveSection.offset().top + 200)) {
                     var AnimateNextSection = ActiveSection.next()
