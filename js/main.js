@@ -77,8 +77,18 @@ let LoadBackgroundImage = function (bg_elem) {
 
 // функция установки высоты блока с bg 
 let EditSb_Bg_wrapperTop = function (bg_elem) {
+    var Height
+    if (docWidth < 1200) {
+        Height = screen.height
+    }
+    else {
+        Height = windowHeight
+    }
+    console.log(Height)
+    console.log(screen.availHeight)
     bg_elem.css({
-        'height': windowHeight - $('header').innerHeight() + 'px',
+        'top': $('header').innerHeight() + 'px',
+        'height': Height - $('header').innerHeight() + 'px',
     })
 }
 //----------------------//
@@ -988,10 +998,7 @@ jQuery(document).ready(function ($) {
 }) // окончание ready
 
 
-/* $(window).on('load', function (e) {
 
-})
- */
 // Функция изменения темы header
 let EditHeader = function (header, theme) {
     var settingsHeader
@@ -1038,17 +1045,33 @@ let ScrollSectionAdaptive = function () {
             ActiveSection,
             ElemAnimateIndex = 0,
             AllElemAnimate = $('.sb-section .sb-description-wrapper')
-        if ($('.ios.mobile').length) {
-            $(window).scrollTop(0)
-            console.log($(window).scrollTop())
+        if ($('.ios.mobile').length || $('.ios.tablet').length) {
+            let AnimateToScroll = setTimeout(function () {
+                if ($(window).scrollTop() || window.pageYOffset != 0) {
+                    var ScrollNow = window.pageYOffset
+                    $('html,body').scrollTop(0)
+                    $('body, html').css('opacity', '0')
+                    $('html,body').stop().animate(
+                        { scrollTop: ScrollNow + 20 }, {
+                        duration: 300,
+                        complete: function () {
+                            $('body, html').css('opacity', '1')
+                        }
+                    }
+                    );
+                }
+                clearInterval(AnimateToScroll)
+                AnimateToScroll = null
+            }, 300)
+
         }
-        console.log($(window).scrollTop())
         if ($(window).scrollTop() <= 0) {
             ActiveSection = $('.section.active')
             AllElemAnimate.eq(ElemAnimateIndex).addClass('animate-init')
             ElemAnimateIndex = ElemAnimateIndex + 1
         }
         else {
+            // console.log($(window).scrollTop())
             var AllSection = $('.section')
             AllSection.each(function () {
                 // console.log($(this).offset().top)
@@ -1060,25 +1083,28 @@ let ScrollSectionAdaptive = function () {
                     ElemAnimateIndex = $(this).index()
                 }
             })
-            if ((ElemAnimateIndex < $(AllElemAnimate).length)
+            if ((ElemAnimateIndex < AllElemAnimate.length)
                 && $(window).scrollTop() >= (AllElemAnimate.eq(ElemAnimateIndex).offset().top - $(window).height())) {
+                // console.log(AllElemAnimate.eq(ElemAnimateIndex).offset().top)
+                // console.log(AllElemAnimate.eq(ElemAnimateIndex).offset().top - $(window).height())
                 AllElemAnimate.eq(ElemAnimateIndex).addClass('animate-init')
                 ElemAnimateIndex = ElemAnimateIndex + 1
                 AllElemAnimate.slice(0, ElemAnimateIndex - 1).addClass('animate-init')
             }
         }
         AnimationSection(ActiveSection)
-        $(window).scroll(function (e) {
+        $(window).on('scroll', function (e) {
             var ScrollTop = $(window).scrollTop()
-            console.log(ScrollTop)
+            // console.log(ScrollTop)
             if (ScrollTop >= lastScrollTop) {
-                if (ScrollTop > (ActiveSection.offset().top + 200)) {
+                if (ScrollTop >= ((ActiveSection.offset().top + ActiveSection.innerHeight()) - $(window).height())) {
                     var AnimateNextSection = ActiveSection.next()
                     AnimationSection(AnimateNextSection)
                 }
-                // console.log(AllElemAnimate.eq(ElemAnimateIndex).offset().top)
-                if ((ElemAnimateIndex < $(AllElemAnimate).length)
-                    && ScrollTop >= (AllElemAnimate.eq(ElemAnimateIndex).offset().top - $(window).height())) {
+                if ((ElemAnimateIndex < AllElemAnimate.length)
+                    && ScrollTop >= (AllElemAnimate.eq(ElemAnimateIndex).offset().top - $(window).height() - 50)) {
+                    // console.log(AllElemAnimate.eq(ElemAnimateIndex).offset().top)
+                    // console.log(AllElemAnimate.eq(ElemAnimateIndex).offset().top - $(window).height())
                     AllElemAnimate.eq(ElemAnimateIndex).addClass('animate-init')
                     ElemAnimateIndex = ElemAnimateIndex + 1
                     // console.log(ElemAnimateIndex)
