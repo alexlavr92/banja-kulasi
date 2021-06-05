@@ -48,12 +48,10 @@ var blockScroll = function (state) {
 
 // Функция установки высоты блока без учета высоты header
 let EditHeightDescrWrap = function () {
-    if (docWidth >= 1200) {
-        if ($('.sb-description-wrapper').length) {
-            $('.sb-description-wrapper').css({
-                'padding-top': $('header').innerHeight() + 'px',
-            })
-        }
+    if ($('.sb-description-wrapper').length) {
+        $('.sb-description-wrapper').css({
+            'padding-top': $('header').innerHeight() + 'px',
+        })
     }
 }
 //----------------------//
@@ -61,7 +59,6 @@ let EditHeightDescrWrap = function () {
 // Функция загрузки изображений в активной секции где есть backgroun-image
 let LoadBackgroundImage = function (bg_elem) {
     var bg_elems = bg_elem.find('[data-bg]:not(.img-load)');
-    /*  console.log(bg_elems) */
     bg_elems.each(function (i, elem) {
         var newImg = new Image();
         newImg.onload = function () {
@@ -81,7 +78,6 @@ let LoadBackgroundImage = function (bg_elem) {
 // функция установки высоты блока с bg 
 let EditSb_Bg_wrapperTop = function (bg_elem) {
     bg_elem.css({
-        'top': $('header').innerHeight() + 'px',
         'height': windowHeight - $('header').innerHeight() + 'px',
     })
 }
@@ -91,41 +87,42 @@ let EditSb_Bg_wrapperTop = function (bg_elem) {
 let InitPaginationDownBtn = function (docWidth) {
 
     if ($('.sb-section').length > 1) {
-        if (docWidth >= 1200 && !$('.pagination-list.pagination-column').length) {
-            console.log('pagination')
-            var PaginationWrapper
-            if ($('.sb-section:first-child').hasClass('sb-section-dark')) {
-                PaginationWrapper = '<ul class="pagination-list pagination-column light flex-block"></ul>'
-            }
-            else {
-                PaginationWrapper = '<ul class="pagination-list pagination-column dark flex-block"></ul>'
-            }
-            $(PaginationWrapper).insertAfter('header')
-
-            var PaginationItem = '<li class="pagination-li"><span></span></li>'
-            for (var k = 1; k <= $('.sb-section').length; k++) {
-                $(PaginationItem).appendTo('.pagination-column')
-                if (k <= 9)
-                    var PaginationItemText = '0' + k
-                else var PaginationItemText = k
-                if (k == 1) {
-                    $('.pagination-li:last-child').addClass('active')
+        if (docWidth >= 1200) {
+            if (!$('.pagination-list.pagination-column').length) {
+                var PaginationWrapper
+                if ($('.sb-section:first-child').hasClass('sb-section-dark')) {
+                    PaginationWrapper = '<ul class="pagination-list pagination-column light flex-block"></ul>'
                 }
-                $('.pagination-li:last-child').children('span').text(PaginationItemText)
+                else {
+                    PaginationWrapper = '<ul class="pagination-list pagination-column dark flex-block"></ul>'
+                }
+                $(PaginationWrapper).insertAfter('header')
+
+                var PaginationItem = '<li class="pagination-li"><span></span></li>'
+                for (var k = 1; k <= $('.sb-section').length; k++) {
+                    $(PaginationItem).appendTo('.pagination-column')
+                    if (k <= 9)
+                        var PaginationItemText = '0' + k
+                    else var PaginationItemText = k
+                    if (k == 1) {
+                        $('.pagination-li:last-child').addClass('active')
+                    }
+                    $('.pagination-li:last-child').children('span').text(PaginationItemText)
+                }
+            }
+            if (!$('.btn-section-wrapper').length) {
+                var BtnDownwrapper = '<div class="btn-section-wrapper"><a href="javascript: void(0)" class="arrow-down-link"><span></span></a></div>'
+                $(BtnDownwrapper).insertAfter('header').hide()
+                if ($('.sb-section:first-child').hasClass('sb-section-dark')) {
+                    $('.btn-section-wrapper').children('.arrow-down-link').addClass('dark')
+                }
+                $('.btn-section-wrapper').fadeIn()
             }
         }
         else {
             if ($('.pagination-list.pagination-column').length) {
                 $('.pagination-list.pagination-column').remove()
             }
-        }
-        if (!$('.btn-section-wrapper').length) {
-            var BtnDownwrapper = '<div class="btn-section-wrapper"><a href="javascript: void(0)" class="arrow-down-link"><span></span></a></div>'
-            $(BtnDownwrapper).insertAfter('header').hide()
-            if ($('.sb-section:first-child').hasClass('sb-section-dark')) {
-                $('.btn-section-wrapper').children('.arrow-down-link').addClass('dark')
-            }
-            $('.btn-section-wrapper').fadeIn()
         }
     }
 
@@ -141,7 +138,7 @@ jQuery(document).ready(function ($) {
         $.fn.addClass = function () { // replace the existing function on $.fn
             func.apply(this, arguments); // invoke the original function
             if ($(this).hasClass('section active')) {
-                /*   console.log($(this), arguments) */
+                // console.log('active')
                 $(this).trigger('classChanged'); // trigger the custom event
             }
             return this; // retain jQuery chainability
@@ -152,7 +149,7 @@ jQuery(document).ready(function ($) {
         $.fn.removeClass = function () {
             func.apply(this, arguments);
             if ($(this).hasClass('section')) {
-                /*       console.log($(this), arguments) */
+                // console.log($(this), arguments)
                 $(this).trigger('classChanged');
             }
             return this;
@@ -164,7 +161,7 @@ jQuery(document).ready(function ($) {
 
 
     // Установка параметров для анимируемых объектов
-    if ($('.animate').length) {
+    if ($('.animate').length && docWidth >= 1200) {
         $('.animate').each(function (i, elem) {
             $(elem).css({
                 '-webkit-transform': 'translate3d(0, ' + $(elem).attr('animate-offset') + 'px, 0)',
@@ -182,8 +179,8 @@ jQuery(document).ready(function ($) {
 
     'use strict'
 
-
-    EditHeightDescrWrap()
+    if (docWidth >= 1200)
+        EditHeightDescrWrap()
 
     if ($('.sb-section-top .slider-wrapper').length) {
         EditSb_Bg_wrapperTop($('.sb-section-top .slider-wrapper'))
@@ -193,36 +190,23 @@ jQuery(document).ready(function ($) {
     // Отслежнивание появления клааса active у секции
     var SliderIndex = 0
     $('body').on('classChanged', 'section', function () {
-        var AllSectionAnimateElem = $(this).find('.animate')
         if ($(this).hasClass('active')) {
-            /*     console.log('есть active') */
-            LoadBackgroundImage($(this))
+            // console.log('есть active')
+            if (docWidth >= 1200)
+                LoadBackgroundImage($(this))
             if (abs_slider && SliderIndex < abs_slider.length) {
-                /*   console.log(abs_slider.length) */
+                //    console.log(abs_slider.length)
                 abs_slider[SliderIndex].update()
                 SliderIndex = SliderIndex + 1
             }
-            if (($(this).index() == 0 && docWidth > 1200) ||
-                docWidth < 1200) {
+            if ($(this).index() == 0 && docWidth > 1200) {
+                var AllSectionAnimateElem = $(this).find('.animate')
                 AllSectionAnimateElem.each(function (i, elem) {
                     $(elem).css({
                         '-webkit-transform': 'translate3d(0, 0, 0)',
                         'transform': 'translate3d(0, 0, 0)'
                     })
                 })
-            }
-            if (docWidth < 1200) {
-                if ($(this).hasClass('sb-section-light')) {
-                    /*    console.log('светлая') */
-                    EditHeader($('header'), 'light')
-                }
-                else if ($(this).hasClass('sb-section-dark')) {
-                    /*  console.log('темная') */
-                    EditHeader($('header'), 'dark')
-                    if ($(this).hasClass('sb-section-chok')) {
-                        $('header').find('.btn-transparent').addClass('btn-dark')
-                    }
-                }
             }
         }
 
@@ -795,10 +779,11 @@ jQuery(document).ready(function ($) {
     })
     //----------------------//
 
+    // Обработчик отправки формы обратной связи //
     $('body').on('submit', '.modal-call-form', function (e) {
         alert('Форма отправлена!')
     })
-
+    //----------------------//
 
     // Обработчик клика на якорную ссылку
 
@@ -823,7 +808,7 @@ jQuery(document).ready(function ($) {
         var ThisSwitcher = $(this).closest('.tab-switcher'),
             ThisIndex = ThisSwitcher.index(),
             ThisContents = $(this).closest('.tabs-wrapper').find('.tabs-contents')
-        /*  console.log(ThisIndex) */
+        //  console.log(ThisIndex)
         ThisContents.children('.active').fadeOut({
             start: function () {
                 ThisSwitcher.siblings('.active').removeClass('active')
@@ -831,7 +816,7 @@ jQuery(document).ready(function ($) {
             complete: function () {
                 $(this).removeClass('active').css('display', '');
                 ThisSwitcher.addClass('active')
-                /*      console.log(ThisContents.find('.tab-content:nth-child(' + (ThisIndex + 1) + ')')) */
+                // console.log(ThisContents.find('.tab-content:nth-child(' + (ThisIndex + 1) + ')')) 
                 ThisContents.find('.tab-content:nth-child(' + (ThisIndex + 1) + ')').fadeIn({
                     start: function () {
                         $(this).css('display', 'flex')
@@ -973,7 +958,7 @@ jQuery(document).ready(function ($) {
                         TimerMenuLink = setTimeout(fadeMenuLink, delayMenuLink)
                     }
                     else {
-                        /*  MenuWrapper.addClass('open-end') */
+                        // MenuWrapper.addClass('open-end') 
                         if (docWidth < 1200) {
                             MenuWrapper.find('.with-dropdown.open').removeClass('open')
                             blockScroll('close')
@@ -1002,6 +987,11 @@ jQuery(document).ready(function ($) {
     //----------------------//
 }) // окончание ready
 
+
+/* $(window).on('load', function (e) {
+
+})
+ */
 // Функция изменения темы header
 let EditHeader = function (header, theme) {
     var settingsHeader
@@ -1045,28 +1035,51 @@ let ScrollSectionAdaptive = function () {
     if (docWidth < 1200) {
         var lastScrollTop = 0,
             NextSection,
-            ActiveSection
-
-        if ($(window).scrollTop() == 0) {
+            ActiveSection,
+            ElemAnimateIndex = 0,
+            AllElemAnimate = $('.sb-section .sb-description-wrapper')
+        console.log()
+        if ($(window).scrollTop() <= 0) {
             ActiveSection = $('.section.active')
+            AllElemAnimate.eq(ElemAnimateIndex).addClass('animate-init')
+            ElemAnimateIndex = ElemAnimateIndex + 1
         }
         else {
             var AllSection = $('.section')
             AllSection.each(function () {
-                if ($(window).scrollTop() > $(this).offset().top) {
+                // console.log($(this).offset().top)
+                if ($(window).scrollTop() >= $(this).offset().top - $('header').innerHeight()) {
+                    console.log('следующий')
                     ActiveSection = $(this)
                     $('.section.active').removeClass('active')
                     ActiveSection.addClass('active')
+                    ElemAnimateIndex = $(this).index()
                 }
             })
+            if ((ElemAnimateIndex < $(AllElemAnimate).length)
+                && $(window).scrollTop() >= (AllElemAnimate.eq(ElemAnimateIndex).offset().top - $(window).height())) {
+                AllElemAnimate.eq(ElemAnimateIndex).addClass('animate-init')
+                ElemAnimateIndex = ElemAnimateIndex + 1
+                AllElemAnimate.slice(0, ElemAnimateIndex - 1).addClass('animate-init')
+            }
         }
-
-        // console.log(ActiveSection)
-        // console.log('начальный скролл ' + $(window).scrollTop())
+        AnimationSection(ActiveSection)
+        // console.log(AllElemAnimate)
         $(window).scroll(function (e) {
             var ScrollTop = $(window).scrollTop()
             // console.log(ScrollTop)
             if (ScrollTop >= lastScrollTop) {
+                if (ScrollTop > (ActiveSection.offset().top + 200)) {
+                    var AnimateNextSection = ActiveSection.next()
+                    AnimationSection(AnimateNextSection)
+                }
+                // console.log(AllElemAnimate.eq(ElemAnimateIndex).offset().top)
+                if ((ElemAnimateIndex < $(AllElemAnimate).length)
+                    && ScrollTop >= (AllElemAnimate.eq(ElemAnimateIndex).offset().top - $(window).height())) {
+                    AllElemAnimate.eq(ElemAnimateIndex).addClass('animate-init')
+                    ElemAnimateIndex = ElemAnimateIndex + 1
+                    // console.log(ElemAnimateIndex)
+                }
                 if (ScrollTop > ((ActiveSection.offset().top + ActiveSection.innerHeight()) - $('header').innerHeight())) {
                     NextSection = ActiveSection.next()
                     NextSection.addClass('active')
@@ -1080,24 +1093,12 @@ let ScrollSectionAdaptive = function () {
                 }
             }
             else {
-                if (ScrollTop <= ActiveSection.offset().top && ScrollTop != 0) {
-                    let ControlSection = function (nextSection, sectioAddTheme) {
-                        nextSection.addClass(sectioAddTheme)
-                        let timerId = setTimeout(function () {
-                            nextSection.removeClass(sectioAddTheme)
-                            clearTimeout(timerId);
-                        }, 400);
-                    }
+                if (ScrollTop <= ActiveSection.offset().top && ScrollTop > 0) {
                     NextSection = ActiveSection.prev()
                     NextSection.addClass('active')
-                    if (NextSection.hasClass('sb-section-dark') && ActiveSection.hasClass('sb-section-dark')) {
-                        ControlSection(NextSection, 'dark')
-                    }
-                    if (NextSection.hasClass('sb-section-light') && ActiveSection.hasClass('sb-section-light')) {
-                        ControlSection(NextSection, 'white')
-                    }
                     ActiveSection.removeClass('active')
                     ActiveSection = NextSection
+                    AnimationSection(ActiveSection)
                     if (!ActiveSection.is(':last-child')) {
                         // console.log('последняя')
                         $('.btn-section-wrapper').fadeIn()
@@ -1112,10 +1113,31 @@ let ScrollSectionAdaptive = function () {
             else {
                 $('.btn-section-wrapper .arrow-down-link.light').removeClass('light').addClass('dark')
             }
+            MobileEditHeader(ActiveSection)
             lastScrollTop = ScrollTop;
         })
     }
     else return false
+}
+
+//Функция анимация елементов в секции //
+let AnimationSection = function (AnimSection) {
+    LoadBackgroundImage(AnimSection)
+    AnimSection.addClass('animate-init')
+}
+
+let MobileEditHeader = function ($this) {
+    if ($this.hasClass('sb-section-light')) {
+        // console.log('светлая')
+        EditHeader($('header'), 'light')
+    }
+    else if ($this.hasClass('sb-section-dark')) {
+        // console.log('темная')
+        EditHeader($('header'), 'dark')
+        if ($this.hasClass('sb-section-chok')) {
+            $('header').find('.btn-transparent').addClass('btn-dark')
+        }
+    }
 }
 
 
@@ -1125,15 +1147,15 @@ let InitTopSlider = function (slider) {
     if (AllSlide.length > 1) {
         var SlideActive = AllSlide.filter('.active'),
             SlideNext = AllSlide.filter('.next')
-        /*   console.log(AllSlide)
-          console.log(SlideActive)
-          console.log(SlideNext) */
+        //  console.log(AllSlide)
+        //   console.log(SlideActive)
+        //   console.log(SlideNext)
         var delay = 6000
         let TimerSlider = setTimeout(function fadeSlide() {
             SlideActive.fadeOut({
                 duration: 1500,
                 step: function (now, tween) {
-                    /*    console.log(now) */
+                    //    console.log(now)
                     if (now <= 0.5) {
                         SlideNext.fadeIn(1500).removeClass('next').addClass('active')
                     }
@@ -1240,8 +1262,6 @@ let CheckAbsSliders = function (sliders) {
 }
 
 let EditAbsSliderWidth = function (sliders, DocWidth) {
-    console.log(DocWidth - (DocWidth - $('section .new-container').width()) + parseInt($('section .new-container').css('padding-right')))
-    console.log(DocWidth)
     var SliderWidth
     if (DocWidth >= 1200) {
         SliderWidth = DocWidth - ((DocWidth - $('section .new-container').width()) / 2)
@@ -1269,18 +1289,18 @@ $(window).on('resize', function (e) {
             'height': NewwindowHeight + 'px',
         })
         windowHeight = NewwindowHeight
-        EditHeightDescrWrap()
+        if (NewDocWidth >= 1200) {
+            EditHeightDescrWrap()
+            if ($('.sb-section-top .slider-wrapper').length) {
+                EditSb_Bg_wrapperTop($('.sb-section-top .slider-wrapper'))
+            }
+        }
         if ($('.slider-wrapper .slider-container-abs').length) {
             CheckAbsSliders($('.slider-wrapper .slider-container-abs'))
-        }
-        if ($('.sb-section-top .slider-wrapper').length) {
-            EditSb_Bg_wrapperTop($('.sb-section-top .slider-wrapper'))
         }
     }
     /*  console.log(NewDocWidth) */
     if ((NewDocWidth != docWidth || NewDocWidth == docWidth) && NewDocWidth >= 1200) {
-        if ($('.slider-wrapper.full-width').length)
-            EditAbsSliderWidth($('.slider-wrapper.full-width'), NewDocWidth)
         if ($('.slider-wrapper.full-width .swiper-container:not(.slider-container-gallery)').length) {
             CheckAbsSliders($('.slider-wrapper.full-width .swiper-container:not(.slider-container-gallery)'))
         }
