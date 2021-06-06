@@ -447,8 +447,7 @@
 
     }
     .sb-section .tab-content > h3 {
-        min-height: 100px;
-    }
+        min-height:auto;
 }
 @media screen and (max-width: 359px) {
     .sb-section .tabs-switchers {
