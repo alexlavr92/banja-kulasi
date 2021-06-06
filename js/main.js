@@ -1082,6 +1082,9 @@ let ScrollSectionAdaptive = function () {
         if ($(window).scrollTop() <= 0) {
             ActiveSection = $('.section.active')
             AllElemAnimate.eq(ElemAnimateIndex).addClass('animate-init')
+            if (AllElemAnimate.eq(ElemAnimateIndex).closest('.sb-section').find('.link-with-arrow:not(.animate-init)').length) {
+                AllElemAnimate.eq(ElemAnimateIndex).closest('.sb-section').find('.link-with-arrow:not(.animate-init)').addClass('animate-init')
+            }
             ElemAnimateIndex = ElemAnimateIndex + 1
         }
         else {
@@ -1102,6 +1105,9 @@ let ScrollSectionAdaptive = function () {
                 // console.log(AllElemAnimate.eq(ElemAnimateIndex).offset().top)
                 // console.log(AllElemAnimate.eq(ElemAnimateIndex).offset().top - $(window).height())
                 AllElemAnimate.eq(ElemAnimateIndex).addClass('animate-init')
+                if (AllElemAnimate.eq(ElemAnimateIndex).closest('.sb-section').find('.link-with-arrow:not(.animate-init)').length) {
+                    AllElemAnimate.eq(ElemAnimateIndex).closest('.sb-section').find('.link-with-arrow:not(.animate-init)').addClass('animate-init')
+                }
                 ElemAnimateIndex = ElemAnimateIndex + 1
                 AllElemAnimate.slice(0, ElemAnimateIndex - 1).addClass('animate-init')
             }
@@ -1120,6 +1126,9 @@ let ScrollSectionAdaptive = function () {
                     // console.log(AllElemAnimate.eq(ElemAnimateIndex).offset().top)
                     // console.log(AllElemAnimate.eq(ElemAnimateIndex).offset().top - $(window).height())
                     AllElemAnimate.eq(ElemAnimateIndex).addClass('animate-init')
+                    if (AllElemAnimate.eq(ElemAnimateIndex).closest('.sb-section').find('.link-with-arrow:not(.animate-init)').length) {
+                        AllElemAnimate.eq(ElemAnimateIndex).closest('.sb-section').find('.link-with-arrow:not(.animate-init)').addClass('animate-init')
+                    }
                     ElemAnimateIndex = ElemAnimateIndex + 1
                     // console.log(ElemAnimateIndex)
                 }
@@ -1308,17 +1317,18 @@ let EditAbsSliderWidth = function (sliders, DocWidth) {
     var SliderWidth
     if (DocWidth >= 1200) {
         SliderWidth = DocWidth - ((DocWidth - $('section .new-container').width()) / 2)
+
+        /*    else {
+               SliderWidth = DocWidth - (DocWidth - $('section .new-container').width()) + parseInt($('section .new-container').css('padding-right'))
+           } */
+        /*    console.log(SliderWidth) */
+        sliders.css({
+            'width': SliderWidth + 'px',
+        })
+        sliders.find('.swiper-scrollbar').css({
+            'width': $('section .new-container').width() + 'px'
+        })
     }
-    else {
-        SliderWidth = DocWidth - (DocWidth - $('section .new-container').width()) + parseInt($('section .new-container').css('padding-right'))
-    }
-    /*    console.log(SliderWidth) */
-    sliders.css({
-        'width': SliderWidth + 'px',
-    })
-    sliders.find('.swiper-scrollbar').css({
-        'width': $('section .new-container').width() + 'px'
-    })
     return false
 }
 

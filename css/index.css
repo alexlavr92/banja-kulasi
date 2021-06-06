@@ -405,11 +405,11 @@
         width: 80%;
     }
     .sb-section .sb-section-tabs {
-        padding: 80px 0 16vw;
+        padding: 80px 0;
         min-height: auto;
     }
     .sb-section .tabs-contents {
-        margin-top: 50px;
+        margin-top: 70px;
     }
     .sb-section .tab-content {
         -webkit-box-orient: vertical;
