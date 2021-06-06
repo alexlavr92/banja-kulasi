@@ -218,6 +218,10 @@ jQuery(document).ready(function ($) {
                     })
                 })
             }
+            // if ($(this).find('.scrollbar-inner').length) {
+            //     console.log('scrollbar-init')
+            //     ScrollBarInit($(this).find('.scrollbar-inner'))
+            // }
         }
 
         /*       else {
@@ -569,10 +573,18 @@ jQuery(document).ready(function ($) {
     }
 
     // Init ScrollBar
+
+    // let ScrollBarInit = function (scrollbarElem) {
+    //     console.log('scroll-init')
+
+    // }
+
     if ($('.scrollbar-inner').length) {
         $('.scrollbar-inner').scrollbar({
             ignoreMobile: true,
+            autoUpdate: true,
             onUpdate: function (elem) {
+                console.log('init')
                 if (elem.hasClass('scroll-scrolly_visible')) {
                     elem.parent('.scroll-wrapper').addClass('scroll-y')
                 }
@@ -587,7 +599,12 @@ jQuery(document).ready(function ($) {
                 }
             },
         });
+
     }
+
+
+    // Инициализация блока со скролом при разрешении по высоте меньше 900px
+    // ScrollBarOn()
     //----------------------//
 
     // Инициализация видеоплеера //
@@ -1004,7 +1021,8 @@ jQuery(document).ready(function ($) {
         }
     })
 
-    ScrollSectionAdaptive()
+    if (docWidth < 1200)
+        ScrollSectionAdaptive()
     //----------------------//
 }) // окончание ready
 
@@ -1332,7 +1350,12 @@ let EditAbsSliderWidth = function (sliders, DocWidth) {
     return false
 }
 
-
+// let ScrollBarOn = function () {
+//     console.log($(window).height())
+//     if ($(window).height() < 900) {
+//         $('.scrollbar-inner').addClass('init')
+//     }
+// }
 
 $(window).on('resize', function (e) {
     var NewwindowHeight = $(window).height()
@@ -1347,6 +1370,7 @@ $(window).on('resize', function (e) {
             if ($('.sb-section-top .slider-wrapper').length) {
                 EditSb_Bg_wrapperTop($('.sb-section-top .slider-wrapper'))
             }
+            // ScrollBarOn()
         }
         if ($('.slider-wrapper .slider-container-abs').length) {
             CheckAbsSliders($('.slider-wrapper .slider-container-abs'))
@@ -1374,7 +1398,7 @@ $(window).on('resize', function (e) {
         }
     }
     if (NewDocWidth != docWidth) {
-        if (NewDocWidth < 1200) {
+        if (NewDocWidth > 1200) {
             if ($('.slider-wrapper.full-width').length)
                 EditAbsSliderWidth($('.slider-wrapper.full-width'), NewDocWidth)
         }

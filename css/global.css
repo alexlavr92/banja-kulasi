@@ -3380,6 +3380,12 @@ section:not(.active) .sb3-slider-wrapper {
     margin-left: 40px;
 }
 
+@media screen and (min-width: 1441px) {
+    .sb3-description-wrapper .description-text.scrollbar-inner.init {
+     max-height: 300px;
+}
+}
+
 @media screen and (max-width: 1440px) {
 .sb3-bg-block,
 .sb3-bg-block.style2,
@@ -3412,11 +3418,10 @@ section:not(.active) .sb3-slider-wrapper {
 .sb3-description-block .links-blue-block {
     padding-top: 25px;
 }
+
+
 .sb3-description-wrapper .description-text.scrollbar-inner {
      max-height: 300px;
-     -webkit-transition: opacity 1s linear;
-     -o-transition: opacity 1s linear;
-     transition: opacity 1s linear;
 }
 .sb-section:not(.active) .sb3-description-wrapper .description-text.scrollbar-inner {
     opacity: 0;
@@ -4031,6 +4036,7 @@ line-height: 100%;
 /* --- Start Standart Block 06 CSS --- */
 .sb6-description-wrapper {
     height: 100%;
+    flex-wrap: nowrap;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -4048,7 +4054,7 @@ line-height: 100%;
 }
 
 .sb6-slider-wrapper.full-width .swiper-container {
-    height: 564px;
+    height: 52vh;
 }
 
 @media screen and (min-width: 1921px) {
