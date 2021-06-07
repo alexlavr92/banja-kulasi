@@ -44,19 +44,6 @@
 
 
 @font-face {
-	font-family: 'SBSansText';
-	src: url('../fonts/SBSansText-Light.eot');
-	src:
-	     url('../fonts/SBSansText-Light.eot?#iefix') format('embedded-opentype'),
-	     url('../fonts/SBSansText-Light.woff2') format('woff2'),
-	     url('../fonts/SBSansText-Light.woff') format('woff'),
-	     url('../fonts/SBSansText-Light.ttf') format('truetype'),
-	     url('../fonts/SBSansText-Light.svg#SBSansText-Light') format('svg');
-	font-weight: 300;
-	font-style: normal;
-}
-
-@font-face {
 	font-family: 'Raleway';
 	src:
 	     url('../fonts/ralewaylight.woff2') format('woff2'),

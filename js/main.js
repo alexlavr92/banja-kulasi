@@ -578,7 +578,7 @@ jQuery(document).ready(function ($) {
             ignoreMobile: true,
             autoUpdate: true,
             onUpdate: function (elem) {
-                console.log('init')
+                // console.log('init')
                 if (elem.hasClass('scroll-scrolly_visible')) {
                     elem.parent('.scroll-wrapper').addClass('scroll-y')
                 }
@@ -626,7 +626,7 @@ jQuery(document).ready(function ($) {
         var ThisHash = '#' + $(this).attr('data-modal')
         if ($(this).attr('data-video-src') != undefined) {
             var VideoSrc = $(this).attr('data-video-src')
-            console.log(VideoSrc)
+            // console.log(VideoSrc)
         }
         if ($(this).attr('data-poster') != undefined) {
             var PosterSrc = $(this).attr('data-poster')
@@ -1105,7 +1105,7 @@ let ScrollSectionAdaptive = function () {
             AllSection.each(function () {
                 // console.log($(this).offset().top)
                 if ($(window).scrollTop() >= $(this).offset().top - $('header').innerHeight()) {
-                    console.log('следующий')
+                    // console.log('следующий')
                     ActiveSection = $(this)
                     $('.section.active').removeClass('active')
                     ActiveSection.addClass('active')
@@ -1149,10 +1149,6 @@ let ScrollSectionAdaptive = function () {
                     NextSection.addClass('active')
                     ActiveSection.removeClass('active')
                     ActiveSection = NextSection
-                    if (ActiveSection.is(':last-child')) {
-                        console.log('последняя')
-                        $('.btn-section-wrapper').fadeOut(100)
-                    }
                     // console.log(ActiveSection)
                 }
             }
@@ -1163,19 +1159,8 @@ let ScrollSectionAdaptive = function () {
                     ActiveSection.removeClass('active')
                     ActiveSection = NextSection
                     AnimationSection(ActiveSection)
-                    if (!ActiveSection.is(':last-child')) {
-                        // console.log('последняя')
-                        $('.btn-section-wrapper').fadeIn()
-                    }
-                    // console.log(ActiveSection)
                 }
                 // console.log('наверх')
-            }
-            if (ActiveSection.hasClass('sb-section-light')) {
-                $('.btn-section-wrapper .arrow-down-link.dark').removeClass('dark').addClass('light')
-            }
-            else {
-                $('.btn-section-wrapper .arrow-down-link.light').removeClass('light').addClass('dark')
             }
             MobileEditHeader(ActiveSection)
             lastScrollTop = ScrollTop;
