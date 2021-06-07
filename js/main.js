@@ -572,13 +572,7 @@ jQuery(document).ready(function ($) {
         EditSb_Bg_wrapper($('.sb4-bg-wrapper'))
     }
 
-    // Init ScrollBar
-
-    // let ScrollBarInit = function (scrollbarElem) {
-    //     console.log('scroll-init')
-
-    // }
-
+    // Инициализации плагина кастомного скрола
     if ($('.scrollbar-inner').length) {
         $('.scrollbar-inner').scrollbar({
             ignoreMobile: true,
@@ -601,10 +595,10 @@ jQuery(document).ready(function ($) {
         });
 
     }
-
+    //----------------------//
 
     // Инициализация блока со скролом при разрешении по высоте меньше 900px
-    // ScrollBarOn()
+    ScrollBarOn()
     //----------------------//
 
     // Инициализация видеоплеера //
@@ -1350,12 +1344,13 @@ let EditAbsSliderWidth = function (sliders, DocWidth) {
     return false
 }
 
-// let ScrollBarOn = function () {
-//     console.log($(window).height())
-//     if ($(window).height() < 900) {
-//         $('.scrollbar-inner').addClass('init')
-//     }
-// }
+// Функция активации плагина скрола блока при высоте экрана меньше 900px
+let ScrollBarOn = function () {
+    if ($(window).height() < 900 && $(window).width() >= 1441) {
+        $('.scrollbar-inner:not(.init):not(.scroll-wrapper)').addClass('init')
+    }
+}
+//----------------------//
 
 $(window).on('resize', function (e) {
     var NewwindowHeight = $(window).height()
@@ -1370,7 +1365,6 @@ $(window).on('resize', function (e) {
             if ($('.sb-section-top .slider-wrapper').length) {
                 EditSb_Bg_wrapperTop($('.sb-section-top .slider-wrapper'))
             }
-            // ScrollBarOn()
         }
         if ($('.slider-wrapper .slider-container-abs').length) {
             CheckAbsSliders($('.slider-wrapper .slider-container-abs'))
