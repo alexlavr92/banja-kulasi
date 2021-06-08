@@ -582,8 +582,8 @@ jQuery(document).ready(function ($) {
     if ($('.sb3-slider-wrapper').length) {
         EditSb_Bg_slider($('.sb3-slider-wrapper'))
     }
-    if ($('.sb4-bg-wrapper').length) {
-        EditSb_Bg_wrapper($('.sb4-bg-wrapper'))
+    if ($('.sb4-bg-block').length) {
+        EditSb_Bg_wrapper($('.sb4-bg-block'))
     }
 
     // Инициализации плагина кастомного скрола
@@ -1380,8 +1380,8 @@ $(window).on('resize', function (e) {
         if ($('.sb3-bg-wrapper.style2').length) {
             EditSb_Bg_wrapper($('.sb3-bg-wrapper.style2'))
         }
-        if ($('.sb4-bg-wrapper').length) {
-            EditSb_Bg_wrapper($('.sb4-bg-wrapper'))
+        if ($('.sb4-bg-block').length) {
+            EditSb_Bg_wrapper($('.sb4-bg-block'))
         }
         if ($('.sb-section-top .slider-wrapper').length) {
             EditSb_Bg_wrapperTop($('.sb-section-top .slider-wrapper'))

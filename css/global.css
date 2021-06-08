@@ -3534,16 +3534,24 @@ section:not(.active) .sb3-slider-wrapper {
             justify-content: center; 
 }
 
+.sb4-bg-block {
+    width: 82%;
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: auto;
+    right: 0;
+}
+
 .sb4-bg-wrapper {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    top: auto;
-    left: auto;
+    top: 0;
+    left: 0;
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    width: 82%;
+    width: 100%;
+    height: 100%;
 }
 
 
@@ -3560,6 +3568,7 @@ section:not(.active) .sb3-slider-wrapper {
     -webkit-transform: translate3d(0 , -50%, 0);
             transform: translate3d(0 , -50%, 0); */
     -webkit-box-pack: center;
+    width: 100%;
         -ms-flex-pack: center;
             justify-content: center;
 }
@@ -3577,6 +3586,13 @@ section:not(.active) .sb3-slider-wrapper {
     margin: -2.5vw -1.5vw;
     width: 100%;
 }
+
+.sb-section:not(.active) .sb4-description-block > .description-list li {
+    -webkit-transition-delay: 0s !important;
+         -o-transition-delay: 0s !important;
+            transition-delay: 0s !important;
+}
+
 .sb4-description-block > .description-list li {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -3677,8 +3693,8 @@ line-height: 100%;
 }
 
 @media screen and (max-width: 1440px) {
-    .sb4-bg-wrapper {
-        width: 79%;
+    .sb4-bg-block {
+        width: 78%;
     }
     .sb4-description-block.style2 {
         padding-right: 0;
@@ -3698,6 +3714,97 @@ line-height: 100%;
         margin: 15px;
         width: calc(20% - 30px);
     }
+}
+
+@media screen and (max-width: 1199px) {
+    .sb4-bg-block {
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+    }
+    .sb4-description-block > .description-list {
+        margin: -20px;
+    }
+    .sb4-description-block > .description-list li {
+        margin: 20px;
+        width: calc(33.3% - 40px);
+    }
+    .sb-section .sb4-description-wrapper {
+        padding: 200px 0 100px;
+    }
+    .sb4-description-wrapper h2.heading {
+        margin-bottom: 70px;
+    }
+    .sb4-description-block .description-list li > div:last-child {
+        font-size: 17px;
+        line-height: 170%;
+    }
+    .sb4-description-block > .btn {
+        position: absolute;
+        right: 4.2vw;
+    }
+    .sb-bg-block .sb4-bg-wrapper {
+        background-position: 10vw 0vw;
+    }
+}
+@media screen and (max-width: 767px) {
+    .sb-section .sb4-description-wrapper {
+        padding: 150px 0 16vw;
+    }
+        .sb4-description-wrapper h2.heading {
+        margin-bottom: 30px;
+    }
+    .sb4-description-block > .description-list {
+        margin: 0;
+        margin: 0 -30px; 
+        width: calc(100% + 60px);
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap;
+        overflow: hidden;
+        overflow-x: auto;
+        -webkit-box-align: start;
+            -ms-flex-align: start;
+                align-items: flex-start;
+        padding-bottom: 10px;
+    }
+    .sb4-description-block > .description-list li {
+        margin: 0;
+        width: 20vw;
+        min-width: 60vw;
+    }
+     .sb4-description-block > .description-list li:first-child,
+    .sb4-description-block > .description-list li + li {
+        margin-left: 30px;
+     }
+      .sb4-description-block > .description-list li:last-child {
+          margin-right: 30px;
+      }
+      .sb4-description-block .description-list li > div:first-child {
+          font-size: 35px;
+            line-height: 143%;
+            padding-bottom: 5px;
+      }
+      .sb4-description-block > .btn {
+          position: relative;
+          right: auto;
+          left: auto;
+          bottom: auto;
+            margin-top: 10px;
+      }
+}
+
+@media screen and (max-width: 359px) {
+    .sb4-description-block > .description-list {
+            margin: 0 -20px;
+    width: calc(100% + 40px);
+    }
+      .sb4-description-block > .description-list li:first-child {
+          margin-left: 20px;
+      }
+       .sb4-description-block > .description-list li:last-child {
+          margin-right: 20px;
+      }
 }
 /* --- End Standart Block 04 CSS --- */
 
@@ -4049,7 +4156,8 @@ line-height: 100%;
 /* --- Start Standart Block 06 CSS --- */
 .sb6-description-wrapper {
     height: 100%;
-    flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;

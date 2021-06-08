@@ -1,0 +1,11 @@
+@media screen and (max-width: 1199px) {
+    .sb1-section:first-child .sb1-bg-block {
+        padding-top: 120px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .sb1-section:first-child .sb1-bg-block {
+        padding-top: 70px;
+    }
+}
