@@ -1491,6 +1491,8 @@ header.dark .btn {
 
 .header .btn {
     margin-left: 138px;
+    min-width: 220px;
+    text-align: center;
     /* position: relative; */
     margin-right: -24px;
 }
