@@ -137,14 +137,14 @@ let InitPaginationDownBtn = function (docWidth) {
     }
 
 }
+
 //----------------------//
 
 jQuery(document).ready(function ($) {
 
-
     // функционал отслеживания появления и удаления класса//
     (function (func) {
-        //console.log(func)
+        // console.log(func)
         $.fn.addClass = function () { // replace the existing function on $.fn
             func.apply(this, arguments); // invoke the original function
             if ($(this).hasClass('section active')) {
@@ -464,6 +464,8 @@ jQuery(document).ready(function ($) {
                         $('header').find('.btn-transparent').addClass('btn-dark')
                     }
                 }
+                if (docWidth >= 1200)
+                    SetCookie(next);
             },  // This option accepts a callback function. The function will be called before the page moves.
             afterMove: function (next, current) {
                 var ActionSection = $('.section:nth-child(' + next + ')')
@@ -482,6 +484,18 @@ jQuery(document).ready(function ($) {
             // the browser's width is less than 600, the fallback will kick in.
             direction: "vertical"            // You can now define the direction of the One Page Scroll animation. Options available are "vertical" and "horizontal". The default value is "vertical".  
         });
+    }
+    //----------------------//
+
+    // Установка куки для перелистывания
+    function SetCookie(index) {
+        $.cookie('SectionView', '' + index + '');
+    }
+
+    if ($.cookie('SectionView') != '1' && docWidth >= 1200) {
+        // console.log($.cookie('SectionView'));
+        $.fn.moveTo($.cookie('SectionView'))
+        $.removeCookie('SectionView');
     }
     //----------------------//
 
