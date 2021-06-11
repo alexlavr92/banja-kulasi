@@ -1232,6 +1232,18 @@ border-radius: 0 !important;
     .sb-section-light   .pagination-item:before {
         background: #242B31; 
     }
+
+    .link-download {
+        font-size: 14px;
+        line-height: 170%;
+        font-weight: 500;
+        padding-left: 30px;
+    }
+    .link-download:before {
+        width: 12px;
+        height: 12px;
+       
+    }
 }
 @media screen and (max-width: 767px) {
    .new-container {
@@ -1254,6 +1266,12 @@ border-radius: 0 !important;
     }
     h3 {
         font-size: 14px;
+    }
+    .link-download:before {
+        top: 5px;
+        -webkit-transform: translateY(0);
+            -ms-transform: translateY(0);
+                transform: translateY(0);
     }
 }
 @media screen and (max-width: 359px) {
@@ -2832,6 +2850,10 @@ border-color: transparent transparent transparent #ffffff;
     left: -100px;
     white-space: nowrap;
 }
+.sb1-description-block h2.heading br {
+    display: none;
+}
+
 .sb1-description-block > .links-blue-block {
     margin-top: 40px;
 }
@@ -2949,6 +2971,9 @@ border-color: transparent transparent transparent #ffffff;
           -webkit-transform: translate3d(0, 0, 0);
                   transform: translate3d(0, 0, 0);
         }
+        .sb1-description-block h2.heading br {
+    display: block;
+} 
 
 }
 @media screen and (max-width: 767px) {
@@ -4150,6 +4175,16 @@ line-height: 100%;
 .sb5-slider-wrapper.full-width .sb5-slide > .heading {
     margin-top: 25px;
 }
+.sb5-section .sb5-description-block > .flex-block:first-child {
+    margin-bottom: 40px;
+}
+}
+
+@media screen and (max-width: 1199px) {
+    .sb5-section:before,
+    .sb5-section:after {
+        content: none;
+    }
 }
 /* --- End Standart Block 05 CSS --- */
 

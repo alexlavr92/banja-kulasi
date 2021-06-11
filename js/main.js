@@ -769,6 +769,18 @@ jQuery(document).ready(function ($) {
                     $(this.$el).parents('.sb-section').find('.slider-before').fadeIn(400)
                 })
             }
+            if ($(this.$el).parents('.pools-page').length && docWidth < 768) {
+                this.changeDirection('vertical', true)
+                $(this.$el).find('.swiper-lazy').each(function () {
+                    console.log($(this))
+                    $(this).css({
+                        'background-image': 'url(' + $(this).attr('data-background') + ')',
+                    })
+                        .addClass('swiper-lazy-loaded')
+                        .removeAttr('data-background')
+                        .children('.swiper-lazy-preloader').remove()
+                })
+            }
             this.update()
         })
         /*   console.log(abs_slider) */
