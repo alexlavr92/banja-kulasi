@@ -3025,8 +3025,7 @@ border-color: transparent transparent transparent #ffffff;
     position: absolute;
     right: 0;
     top: 0;
-    width: 67%;
-   /*  max-width: 67%; */
+    width: 67.5%;
     height: 90%;
     -webkit-transition: all 1s linear;
     -o-transition: all 1s linear;
@@ -3234,6 +3233,30 @@ section:not(.active) .sb2-slider-wrapper {
     .sb2-bg-block .sb-bg-wrapper {
         height: 78vw;
     }
+    .sb2-description-price {
+        width: 100%;
+    }
+    .sb2-description-price .sb2-content.style2 {
+        width: 100%;
+        max-width: none;
+        min-width: auto;
+    }
+
+    .sb2-description-price .sb2-content-option {
+        width: auto;
+        -webkit-box-align: start;
+            -ms-flex-align: start;
+                align-items: flex-start;
+    }
+     .sb2-description-price .sb2-content-option > div:first-child {
+         min-width: auto;
+         white-space: normal;
+         overflow: auto;
+         -webkit-box-flex: 2;
+             -ms-flex: 2;
+                 flex: 2;
+     }
+
     .sb2-description-wrapper {
         padding-left: 20px;
     }
@@ -3250,6 +3273,9 @@ section:not(.active) .sb2-slider-wrapper {
     .sb2-bg-block {
         margin: 0 -20px;
         width: calc(100% + 40px);
+    }
+    .sb2-description-wrapper {
+        padding-left: 30px;
     }
 }
 /* --- End 05 Standart Block 02 CSS --- */
@@ -3282,7 +3308,7 @@ section:not(.active) .sb3-slider-wrapper {
 .sb3-bg-block.style2 {
     bottom: 0;
     top: auto;
-    width: 55%;
+    width: 57%;
 }
 .sb3-slider-wrapper {
    position: absolute;
@@ -3300,9 +3326,10 @@ section:not(.active) .sb3-slider-wrapper {
     bottom: -19px;
 }
 
-.sb3-bg-wrapper.style2 + .sb3-description-wrapper,
+.sb3-bg-block.style2 + .sb3-description-wrapper,
 .sb3-slider-wrapper + .sb3-description-wrapper {
-    width: 43%;
+    width: 40%;
+    margin-right: 0;
 }
 
 .sb3-slider-wrapper > .swiper-container,
@@ -3340,7 +3367,7 @@ section:not(.active) .sb3-slider-wrapper {
 
 }
 @media screen and (min-width: 1441px) and (min-height: 900px) {
-    .sb3-description-block::before {
+    .sb3-description-block:not(.style2):before {
         content: '';
         position: absolute;
         top: 0;
@@ -3361,9 +3388,10 @@ section:not(.active) .sb3-slider-wrapper {
 
 
 .sb3-description-block.style2 {
-  /*  width: 61%; */ 
-    margin-left: 12%;
-    max-width: 527px;
+  /*  width: 61%; */
+  margin-left: 0;
+    padding-left: 12%;
+ /*    max-width: 527px; */
     position: relative;
 }
 
@@ -3384,8 +3412,12 @@ section:not(.active) .sb3-slider-wrapper {
 .sb3-description-block > .links-white-block {
     position: absolute;
     top: 0;
+    width: 100%;
     left: 0;
     padding-left: 0 !important;
+}
+.sb3-description-block.style2 > .links-white-block a {
+    margin-left: 12%;
 }
 
 .sb3-description-block .description-option {
@@ -3432,7 +3464,7 @@ section:not(.active) .sb3-slider-wrapper {
     width: 59%;
 }
 .sb3-description-wrapper,
-.sb3-bg-wrapper.style2 + .sb3-description-wrapper,
+.sb3-bg-block.style2 + .sb3-description-wrapper,
 .sb3-slider-wrapper + .sb3-description-wrapper {
     position: absolute;
     right: 0;
@@ -3441,13 +3473,20 @@ section:not(.active) .sb3-slider-wrapper {
     left: auto;
     width: 41%;
 }
-.sb3-description-block,
-.sb3-description-block.style2 {
+.sb3-description-block {
     margin-left: 30px;
     margin-right: 30px;
     max-width: none;
     width: calc(100% - 60px);
 }
+.sb3-description-block.style2 {
+    width: 92%;
+    padding-left: 30px;
+}
+.sb3-description-block.style2 > .links-white-block a {
+    margin-left: 30px;
+}
+
 .sb3-description-block h3.heading {
     padding-bottom: 20px;
 }
@@ -3479,7 +3518,8 @@ section:not(.active) .sb3-slider-wrapper {
 /*     .sb3-section {
         min-height: 1024px;
     } */
-    .sb3-bg-block {
+    .sb3-bg-block,
+    .sb3-bg-block.style2 {
         position: relative;
         width: 96%;
         left: -70px;
@@ -3491,7 +3531,12 @@ section:not(.active) .sb3-slider-wrapper {
     .sb3-bg-block .sb-bg-wrapper {
         height: 710px;
     }
-    .sb3-description-wrapper {
+    .sb3-bg-block.style2 .sb-bg-wrapper {
+        height: 640px;
+    }
+
+    .sb3-description-wrapper,
+    .sb3-bg-block.style2 + .sb3-description-wrapper, .sb3-slider-wrapper + .sb3-description-wrapper {
        position: relative;
         left: auto;
         margin-left: 0;
@@ -3499,7 +3544,16 @@ section:not(.active) .sb3-slider-wrapper {
         bottom: auto;
         right: auto;
         max-width: 75%;
-        margin-top: 30px;
+        margin-top: 40px;
+    }
+    .sb3-description-block .links-blue-block {
+        padding-top: 40px;
+    }
+    .sb3-description-block .btn-bron_wrapper {
+        margin-top: 60px;
+    }
+    .sb3-description-block h3.heading {
+        padding-bottom: 25px;
     }
     .sb3-description-wrapper .description-text.scrollbar-inner {
         max-height: none;
@@ -3507,6 +3561,10 @@ section:not(.active) .sb3-slider-wrapper {
     .sb3-description-block, .sb3-description-block.style2 {
         margin: 0;
         width: 100%;
+        padding-left: 0;
+    }
+    .sb3-description-block.style2 > *:not(.heading):not(.pre-text):not(.description-scroll) {
+        padding-left: 0;
     }
     .sb3-description-wrapper > .link-with-arrow {
         display: none;
@@ -3514,18 +3572,54 @@ section:not(.active) .sb3-slider-wrapper {
     .sb-section:not(.active) .sb3-description-wrapper .description-text.scrollbar-inner {
     opacity: 1;
 } 
+.sb3-description-block.style2 > .links-white-block {
+    position: relative;
+    margin-top: 90px;
+}
+.sb3-description-block.style2 > .links-white-block a {
+    margin-left: 0;
+}
+
+.sb-section .sb3-description-wrapper {
+    padding-bottom: 100px;
+}
+
+.sb3-description-block.style2 + .link-with-arrow {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    bottom: 95px;
+    right: 0;
+    /* white-space: nowrap; */
+} 
+
+.sb-section:first-child .sb3-bg-block.style2 {
+    padding-top: 120px;
+}
 }
 
 @media screen and (max-width: 767px) {
+    .sb3-description-wrapper, 
+    .sb3-bg-block.style2 + .sb3-description-wrapper, 
+    .sb3-slider-wrapper + .sb3-description-wrapper {
+        margin-top: 30px;
+    }
+
     .sb3-bg-block {
     width: calc(100% + 60px);
     margin: 0 -30px;
     left: 0;
     }
+    .sb3-bg-block.style2 {
+        left: 0;
+        width: calc(100% + 30px);
+    }
     .sb3-bg-block .sb-bg-wrapper {
         height: 106vw;
     }
-    .sb3-description-wrapper {
+    .sb3-description-wrapper,
+    .sb3-bg-block.style2 + .sb3-description-wrapper, 
+    .sb3-slider-wrapper + .sb3-description-wrapper  {
         width: 100%;
         max-width: none;
         padding-left: 20px;
@@ -3533,12 +3627,60 @@ section:not(.active) .sb3-slider-wrapper {
     .sb3-description-wrapper > .link-with-arrow  {
         font-size: 16px;
     }
+    .sb-section .sb3-description-wrapper {
+        padding-bottom: 16vw;
+    }
+
+    .sb-section:first-child .sb3-bg-block.style2 {
+        padding-top: 70px;
+    }
+   .sb3-bg-block.style2 .sb-bg-wrapper{
+        height: 105vw;
+    }
+    .sb3-description-block h3.heading {
+        padding-bottom: 20px;
+    }
+    .sb3-description-block .description-option {
+        width: 100%;
+    }
+    .sb3-description-block .description-option > div:first-child {
+        max-width: 60%;
+    }
+    .sb3-description-block.style2 > .links-white-block {
+        margin-top: 70px;
+        margin-left: -20px;
+    }
+    .sb3-description-block.style2 > .links-white-block a {
+        padding-left: 0;
+    }
+    .sb3-description-block.style2 > .links-white-block a:before,
+     .sb3-description-block.style2 > .links-white-block a:after
+     {
+        content: none;
+    }
+    .sb3-description-block.style2 + .link-with-arrow {
+        bottom: 14vw;
+    }
+
+    .sb3-description-block.style2 + .link-with-arrow > .arrow-next {
+        margin-left: 15px;
+    }
+    .sb3-description-block .btn-bron_wrapper > .btn {
+        width: 200px;
+        text-align: center;
+    }
 }
 @media screen and (max-width: 359px) {
-    .sb3-bg-block {
+    .sb3-bg-block,
+    .sb3-bg-block.style2 {
     width: calc(100% + 40px);
     margin: 0 -20px;
     left: 0;
+    }
+    .sb3-description-wrapper,
+    .sb3-bg-block.style2 + .sb3-description-wrapper, 
+    .sb3-slider-wrapper + .sb3-description-wrapper  {
+        padding-left: 30px;
     }
 }
 /* --- End 06 Standart Block 03 CSS --- */
