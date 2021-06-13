@@ -3659,7 +3659,7 @@ section:not(.active) .sb3-slider-wrapper {
         content: none;
     }
     .sb3-description-block.style2 + .link-with-arrow {
-        bottom: 14vw;
+        bottom: calc(14vw + 3px);
     }
 
     .sb3-description-block.style2 + .link-with-arrow > .arrow-next {
