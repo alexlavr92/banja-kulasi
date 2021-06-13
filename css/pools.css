@@ -114,6 +114,10 @@
         flex-wrap: nowrap;
 }
 
+.pools-page .sb1-description-block h2.heading > br {
+    display: none;
+}
+
 @media screen and (max-width: 1400px) {
     .sb5-section .links-blue-block {
         bottom: auto;
@@ -172,6 +176,9 @@
     .pools-page  .sb1-description-block .description-text > br {
     display: block;
 }
+.pools-page .sb1-description-block h2.heading > br {
+    display: block;
+} 
 }
 
 @media screen and (max-width: 767px) {
@@ -179,7 +186,7 @@
         margin-top: 25px;
     }
     .pools-page .sb5-section {
-        padding: 23vw 0 10vw;
+        padding: 23vw 0 20vw;
     }
     .pools-page .sb5-description-wrapper {
         padding-top: 50px;

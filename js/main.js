@@ -772,7 +772,7 @@ jQuery(document).ready(function ($) {
             if ($(this.$el).parents('.pools-page').length && docWidth < 768) {
                 this.changeDirection('vertical', true)
                 $(this.$el).find('.swiper-lazy').each(function () {
-                    console.log($(this))
+                    // console.log($(this))
                     $(this).css({
                         'background-image': 'url(' + $(this).attr('data-background') + ')',
                     })
@@ -1044,8 +1044,9 @@ jQuery(document).ready(function ($) {
     if (docWidth < 1200)
         ScrollSectionAdaptive()
     //----------------------//
-}) // окончание ready
 
+
+}) // окончание ready
 
 
 // Функция изменения темы header
