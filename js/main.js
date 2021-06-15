@@ -490,12 +490,18 @@ jQuery(document).ready(function ($) {
     // Установка куки для перелистывания
     function SetCookie(index) {
         $.cookie('SectionView', '' + index + '');
+        $.cookie('DocumentHref', '' + document.location.href + '');
+        console.log($.cookie(''))
     }
 
-    if ($.cookie('SectionView') != '1' && docWidth >= 1200) {
+    if ($.cookie('SectionView') != '1' && docWidth >= 1200 && $.cookie('DocumentHref') == document.location.href) {
         // console.log($.cookie('SectionView'));
         $.fn.moveTo($.cookie('SectionView'))
+        /*  $.removeCookie('SectionView'); */
+    }
+    if ($.cookie('DocumentHref') != document.location.href) {
         $.removeCookie('SectionView');
+        $.removeCookie('DocumentHref');
     }
     //----------------------//
 

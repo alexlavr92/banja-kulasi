@@ -186,10 +186,100 @@
     .btn-transparent {
         background-color: transparent;
     }
+
+ /*--- Start Dark Btn CSS ---*/
     .btn-dark {
-        background-color: #242B31;
+        background: #e7e7e7;
         color: #ffffff;
+        position: relative;
+        z-index: 0;
+        overflow: hidden;
+        -webkit-transition: none;
+        -o-transition: none;
+        transition: none;
+        -webkit-transition: color .2s linear;
+        -o-transition: color .2s linear;
+        transition: color .2s linear;
     }
+    .btn-dark.btn-animate:hover {
+        color: #242b31;
+    }
+
+    .btn-dark.btn-animate:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        padding-bottom: 100%;
+        -webkit-transform: translate3d(0,0,0);
+                transform: translate3d(0,0,0);
+        -webkit-transition: -webkit-transform 0.3s;
+        transition: -webkit-transform 0.3s;
+        -o-transition: transform 0.3s;
+        transition: transform 0.3s;
+        transition: transform 0.3s, -webkit-transform 0.3s;
+        -webkit-transition-timing-function: cubic-bezier(0.7, 0, 0.2, 1);
+             -o-transition-timing-function: cubic-bezier(0.7, 0, 0.2, 1);
+                transition-timing-function: cubic-bezier(0.7, 0, 0.2, 1);
+        background: #242B31;
+        z-index: -1;
+    }
+    .btn-dark.btn-animate:hover:before,
+    .btn-dark.btn-animate:active:before {
+        -webkit-transform: translate3d(0,100%,0);
+                transform: translate3d(0,100%,0);
+    }
+
+     .btn-dark.btn-animate > span {
+        overflow: hidden;
+
+     }
+      .btn-dark.btn-animate span  {
+        display: block;
+        position: relative;
+      }
+      @-webkit-keyframes MoveUpInitial {
+          100% {
+              -webkit-transform: translate3d(0,-105%,0);
+                      transform: translate3d(0,-105%,0);
+          }
+      }
+      @keyframes MoveUpInitial {
+          100% {
+              -webkit-transform: translate3d(0,-105%,0);
+                      transform: translate3d(0,-105%,0);
+          }
+      }
+      @-webkit-keyframes MoveUpEnd {
+          0% {
+            -webkit-transform: translate3d(0,100%,0);
+                    transform: translate3d(0,100%,0);
+          }
+          100% {
+              -webkit-transform: translate3d(0,0,0);
+                      transform: translate3d(0,0,0);
+          }
+      }
+      @keyframes MoveUpEnd {
+          0% {
+            -webkit-transform: translate3d(0,100%,0);
+                    transform: translate3d(0,100%,0);
+          }
+          100% {
+              -webkit-transform: translate3d(0,0,0);
+                      transform: translate3d(0,0,0);
+          }
+      }
+
+     .btn-dark.btn-animate:hover > span > span {
+        -webkit-animation: MoveUpInitial 0.2s forwards, MoveUpEnd 0.2s forwards 0.2s;
+                animation: MoveUpInitial 0.2s forwards, MoveUpEnd 0.2s forwards 0.2s
+     }
+
+/* --- End Dark Btn CSS --- */
+
 
     .btn-brdr {
         border: 1px solid;
@@ -883,7 +973,8 @@ border-radius: 0 !important;
     position: relative;
     padding-left: 36px;
 }
-.link-download:before {
+.link-download:before,
+.link-download:after {
     content: '';
     position: absolute;
     top: 50%;
@@ -893,19 +984,30 @@ border-radius: 0 !important;
             transform: translateY(-50%);
     width: 16px;
     height: 16px;
-    background-image: url(../media/icons/down-stripe.svg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
-    -webkit-transition: background-image .2s ease;
-    -o-transition: background-image .2s ease;
-    transition: background-image .2s ease;
+    transition: opacity .2s ease;
+}
+
+.link-download:before {
+    background-image: url(../media/icons/down-stripe.svg);
+    opacity: 1;
+}
+.link-download:after {
+   background-image: url(../media/icons/down-stripe-hover.svg);
+   opacity: 0;
 }
 
 .link-download:hover:before,
 .link-download:active:before {
-    background-image: url(../media/icons/down-stripe-hover.svg);
+    opacity: 0;
 }
+.link-download:hover:after,
+.link-download:active:after {
+    opacity: 1;
+}
+
 
 @-webkit-keyframes btn-down {
     from {
@@ -1238,7 +1340,8 @@ border-radius: 0 !important;
         font-weight: 500;
         padding-left: 30px;
     }
-    .link-download:before {
+    .link-download:before,
+    .link-download:after {
         width: 12px;
         height: 12px;
        
@@ -1266,7 +1369,8 @@ border-radius: 0 !important;
     h3 {
         font-size: 14px;
     }
-    .link-download:before {
+    .link-download:before,
+    .link-download:after {
         top: 5px;
         -webkit-transform: translateY(0);
             -ms-transform: translateY(0);
@@ -2662,6 +2766,9 @@ border-color: transparent transparent transparent #ffffff;
         bottom: 2%;
         right: 4%;
     }
+/*     .sb-description-wrapper h2.heading {
+        margin-bottom: 40px !important;
+    } */
 }
 
 @media screen and (max-width: 1199px) {
@@ -2764,6 +2871,9 @@ border-color: transparent transparent transparent #ffffff;
        .slider-wrapper.full-width .swiper-container + .swiper-scrollbar {
         left: 30px;
         width: calc(100% - 60px);
+    }
+    .sb-description-wrapper h2.heading {
+        margin-bottom: 30px !important;
     }
 }
 
@@ -3179,9 +3289,6 @@ section:not(.active) .sb2-slider-wrapper {
             -ms-transform: translate(0, -50%);
                 transform: translate(0, -50%); 
     }
-    .sb-description-wrapper h2.heading {
-        margin-bottom: 40px;
-    }
 /*     .sb2-section.active .sb2-bg-wrapper,
     section.active .sb2-slider-wrapper {
 
@@ -3192,9 +3299,9 @@ section:not(.active) .sb2-slider-wrapper {
     .sb2-description-block h3.heading {
         padding-bottom: 20px;
     }
-    .sb2-description-wrapper .sb2-content + .sb2-content {
+/*     .sb2-description-wrapper .sb2-content + .sb2-content {
         margin-top: 20px;
-    }
+    } */
 }
 @media screen and (max-width: 1199px) {
     .sb2-bg-block {
@@ -3241,6 +3348,9 @@ section:not(.active) .sb2-slider-wrapper {
         max-width: none;
         min-width: auto;
     }
+    .sb2-description-price .sb2-content + .sb2-content {
+        margin-top: 30px;
+    }
 
     .sb2-description-price .sb2-content-option {
         width: auto;
@@ -3264,8 +3374,9 @@ section:not(.active) .sb2-slider-wrapper {
             -webkit-transform: translate3d(0, -20px, 0) !important;
                     transform: translate3d(0, -20px, 0) !important;
          }
-    .sb-description-wrapper h2.heading {
-        margin-bottom: 30px;
+
+    .sb2-description-block .sb2-description-price h3.heading {
+        padding-bottom: 10px;
     }
 }
 
