@@ -1,0 +1,18 @@
+.contacts-page .sb-description-wrapper .link-blue {
+    margin-top: 40px;
+}
+
+@media screen and (max-width: 1199px) {
+  .contacts-page  .sb1-bg-block {
+      height: 640px;
+  }
+   .contacts-page .sb1-description-block .description-text > br {
+       display: block;
+   }
+}
+
+@media screen and (max-width: 767px) {
+     .contacts-page  .sb1-bg-block {
+      height: 106vw;
+  } 
+}

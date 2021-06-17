@@ -1,3 +1,4 @@
+.spa-page,
 .spa-page .section {
     background: #221F1D !important;
 }
@@ -75,4 +76,11 @@
         letter-spacing: 0.05em;
         margin-bottom: 50px !important;
     }
+    .sb-section .sb4-description-wrapper {
+        padding: 0;
+    }
+    .sb4-section {
+        padding: 150px 0 16vw;
+    }
+
 }

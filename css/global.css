@@ -3116,9 +3116,6 @@ border-color: transparent transparent transparent #ffffff;
 /*         .sb1-description-block h2.heading br {
     display: block;
 }  */
-.sb1-section:first-child .sb1-bg-block {
-    padding-top: 70px;
-}
 
 }
 @media screen and (max-width: 767px) {
@@ -3150,6 +3147,9 @@ border-color: transparent transparent transparent #ffffff;
    /*  .sb1-description-block > h3.heading {
     font-size: 14px;
 } */
+.sb1-section:first-child .sb1-bg-block {
+    padding-top: 70px;
+}
 }
 
 @media screen and (max-width: 359px) {
