@@ -57,6 +57,9 @@
      .spa-page .sb4-description-wrapper h2.heading {
          z-index: 2;
      }
+    .spa-page  .sb1-description-block .description-text > br {
+        display: block;
+    }
 }
 
 @media screen and (max-width: 767px) {

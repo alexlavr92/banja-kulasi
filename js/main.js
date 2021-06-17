@@ -77,19 +77,21 @@ let LoadBackgroundImage = function (bg_elem) {
 
 // функция установки высоты блока с bg 
 let EditSb_Bg_wrapperTop = function (bg_elem) {
-    var Height
     if (docWidth < 1200) {
-        Height = screen.height
+        bg_elem.css({
+            'top': $('header').innerHeight() + 'px',
+            'height': 'calc(100vh - ' + $('header').innerHeight() + 'px)',
+        })
     }
     else {
-        Height = windowHeight
+        bg_elem.css({
+            'top': $('header').innerHeight() + 'px',
+            'height': $(window).height() - $('header').innerHeight() + 'px',
+        })
     }
     // console.log(Height)
     // console.log(screen.availHeight)
-    bg_elem.css({
-        'top': $('header').innerHeight() + 'px',
-        'height': Height - $('header').innerHeight() + 'px',
-    })
+
 }
 //----------------------//
 
@@ -753,7 +755,9 @@ jQuery(document).ready(function ($) {
                 1200: {
                     scrollbar: {
                         dragSize: '70',
-                    }
+
+                    },
+                    // freeMode: false,
                 },
             },
         })
@@ -764,6 +768,7 @@ jQuery(document).ready(function ($) {
         var abs_slider = []
         $('.slider-wrapper.full-width .swiper-container').each(function (index, elem) {
             InitSbAbsSlider(index, $(elem))
+            /*  console.log(abs_slider) */
         })
         $(abs_slider).each(function () {
             if (!$(this.$el).hasClass('slider-container-gallery')) {
