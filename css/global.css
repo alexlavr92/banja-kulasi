@@ -987,6 +987,8 @@ border-radius: 0 !important;
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
+    -webkit-transition: opacity .2s ease;
+    -o-transition: opacity .2s ease;
     transition: opacity .2s ease;
 }
 
@@ -1700,6 +1702,10 @@ header.dark .btn {
     -o-transition: all .5s linear;
     transition: all .5s linear;
 }
+.menu-wrapper.menu-wrapper-chok > .menu-overlay {
+    background-color: #221F1D;
+}
+
 .menu-wrapper.open > .menu-overlay {
     max-width: 260rem;
     max-height: 260rem;
@@ -1901,6 +1907,7 @@ display: none;
 .menu-bottom-contact {
     margin-left: 6vw;
 }
+
 .menu-bottom-contact > a {
     color: #FFFFFF;
     margin-left: 20px;
@@ -1954,6 +1961,9 @@ display: none;
 @media screen and (max-width: 1199px) {
     .menu-wrapper.open-end {
         background-color: #242B31;
+    }
+    .menu-wrapper.menu-wrapper-chok.open-end {
+        background-color: #221F1D;
     }
 
     .menu-wrapper > .header-menu-btn {
@@ -2011,6 +2021,10 @@ display: none;
         -o-transition: all .5s linear;
         transition: all .5s linear;
     }
+    .menu-wrapper.menu-wrapper-chok > .menu-overlay:before {
+        background-color: #221F1D;
+    }
+
     .menu-wrapper.open .menu-overlay {
         max-width: 100%;
         max-height: 100%;
@@ -2139,7 +2153,9 @@ display: none;
          z-index: -1;
          background-color: #1D2429;
      }
-
+     .menu-wrapper.menu-wrapper-chok .menu-bottom:before {
+         background-color: #221F1D;
+     }
      .menu-bottom-contact {
          -webkit-box-orient: horizontal;
          -webkit-box-direction: normal;
@@ -2205,6 +2221,10 @@ display: none;
         line-height: 100%;
         margin-bottom: 10px;
     }
+
+    .menu-bottom-contact .xs-hidden {
+        display: none;
+    }
     .menu-bottom-develop > span:first-child {
         width: 100%;
         margin-bottom: 18px;
@@ -2230,6 +2250,10 @@ display: none;
     header.dark {
         background: #242B31;
     }
+     header.dark.chok {
+         background: #221F1D;
+     }
+
       header.light {
           background: #ffffff;
       }
@@ -2516,7 +2540,7 @@ section .sb-bg-wrapper.chok-before:before {
     height: 100%;
     left: 0;
     top: 0;
-    background-color: rgba(0, 0, 0, .8);
+    background-color: rgba(34, 31, 29, .9);
 }
 
 section .sb-bg-wrapper.grey-before:before {
@@ -2766,9 +2790,9 @@ border-color: transparent transparent transparent #ffffff;
         bottom: 2%;
         right: 4%;
     }
-/*     .sb-description-wrapper h2.heading {
-        margin-bottom: 40px !important;
-    } */
+     .sb-description-wrapper h2.heading {
+        margin-bottom: 40px;
+    }
 }
 
 @media screen and (max-width: 1199px) {
@@ -2786,8 +2810,8 @@ border-color: transparent transparent transparent #ffffff;
     .sb-section-dark {
         background-color: #242b31 !important;
     }
-    .sb-section-dark.sb-section.chok {
-        background-color: #221F1D;
+    .sb-section-dark.sb-section-chok {
+        background-color: #221F1D !important;
     }
      .sb-section-light {
   background-color: #ffffff !important;
@@ -3023,6 +3047,10 @@ border-color: transparent transparent transparent #ffffff;
 }
 
 @media screen and (max-width: 1199px) {
+    .sb1-section:first-child  .sb1-bg-block {
+        padding-top: 120px;
+    }
+
     .sb1-bg-block, .sb1-bg-block.style2 {
         position: relative;
         width: 96%;
@@ -3085,6 +3113,9 @@ border-color: transparent transparent transparent #ffffff;
 /*         .sb1-description-block h2.heading br {
     display: block;
 }  */
+.sb1-section:first-child .sb1-bg-block {
+    padding-top: 70px;
+}
 
 }
 @media screen and (max-width: 767px) {
@@ -3377,6 +3408,11 @@ section:not(.active) .sb2-slider-wrapper {
 
     .sb2-description-block .sb2-description-price h3.heading {
         padding-bottom: 10px;
+    }
+    .sb2-description-wrapper .sb2-content.style2 {
+        min-width: auto;
+        width: 100%;
+        max-width: none;
     }
 }
 
@@ -3952,20 +3988,20 @@ line-height: 100%;
     padding-bottom: 25px;
 }
 
-.sb4-section > .slider-before {
+.sb4-section .slider-before {
     position: absolute;
     bottom: 0;
     right: 0;
     width: 20%;
     max-width: 375px;
-    z-index: 1;
+    z-index: 2;
 }
-.sb4-section.sb-section-chok > .slider-before {
+.sb4-section.sb-section-chok .slider-before {
     background: -o-linear-gradient(right, rgba(34, 31, 29, 0.85) 0%, rgba(34, 31, 29, 0) 100%);
     background: -webkit-gradient(linear, right top, left top, from(rgba(34, 31, 29, 0.85)), to(rgba(34, 31, 29, 0)));
     background: linear-gradient(-90deg, rgba(34, 31, 29, 0.85) 0%, rgba(34, 31, 29, 0) 100%);
 }
-.sb4-section.sb-section-dark:not(.sb-section-chok) > .slider-before {
+.sb4-section.sb-section-dark:not(.sb-section-chok) .slider-before {
     background: -o-linear-gradient(right, #242B31 0%, rgba(36, 43, 49, 0) 100%);
     background: -webkit-gradient(linear, right top, left top, from(#242B31), to(rgba(36, 43, 49, 0)));
     background: linear-gradient(-90deg, #242B31 0%, rgba(36, 43, 49, 0) 100%);
@@ -4026,6 +4062,16 @@ line-height: 100%;
     .sb-bg-block .sb4-bg-wrapper {
         background-position: 10vw 0vw;
     }
+    .sb4-section .slider-before {
+        width: 25%;
+    }
+    .sb4-slider-wrapper > .swiper-container {
+        margin-left: -70px;
+        margin-right: -20px;
+        width: calc(100% + 90px);
+        padding-left: 70px;
+        padding-right: 20px;
+    }
 }
 @media screen and (max-width: 767px) {
     .sb-section .sb4-description-wrapper {
@@ -4071,6 +4117,22 @@ line-height: 100%;
           bottom: auto;
             margin-top: 10px;
       }
+      .sb4-slider-wrapper h3.heading {
+          padding-bottom: 20px;
+      }
+      .sb4-slider-wrapper:not(.style2).full-width .swiper-slide {
+          -ms-flex-preferred-size: 270px;
+              flex-basis: 270px;
+          max-width: 270px;
+      }
+      .sb4-slider-wrapper:not(.style2).full-width .swiper-slide > .sb4-slide {
+          padding-right: 30px;
+      }
+      .sb4-slider-wrapper > .swiper-container {
+          margin: 0 -30px;
+          padding: 0 30px;
+          width: calc(100% + 60px)
+      }
 }
 
 @media screen and (max-width: 359px) {
@@ -4084,6 +4146,11 @@ line-height: 100%;
        .sb4-description-block > .description-list li:last-child {
           margin-right: 20px;
       }
+           .sb4-slider-wrapper > .swiper-container {
+          margin: 0 -20px;
+          padding: 0 20px;
+          width: calc(100% + 40px)
+      } 
 }
 /* --- End Standart Block 04 CSS --- */
 

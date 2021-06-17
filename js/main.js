@@ -491,7 +491,7 @@ jQuery(document).ready(function ($) {
     function SetCookie(index) {
         $.cookie('SectionView', '' + index + '');
         $.cookie('DocumentHref', '' + document.location.href + '');
-        console.log($.cookie(''))
+        // console.log($.cookie(''))
     }
 
     if ($.cookie('SectionView') != '1' && docWidth >= 1200 && $.cookie('DocumentHref') == document.location.href) {
@@ -1322,20 +1322,23 @@ let ValidateEmail = function (email) {
 //----------------------//
 
 let CheckSlideWidth = function (slider) {
-    var AllSlidesElems = slider.find('.swiper-slide'),
-        AllSlidesWidth = 0
-    AllSlidesElems.each(function () {
-        AllSlidesWidth = AllSlidesWidth + $(this).innerWidth()
-    })
-    if (AllSlidesWidth > slider.innerWidth()) {
-        var slider_before = '<div class="slider-before"></div>'
-        if (!slider.parents('.sb-section').find('.slider-before').length)
-            $(slider_before).prependTo(slider.parents('.sb-section'))
-        slider.parents('.sb-section').find('.slider-before').css({
-            'height': $(window).height() - $('header').innerHeight() + 'px',
+    if (docWidth >= 768) {
+        var AllSlidesElems = slider.find('.swiper-slide'),
+            AllSlidesWidth = 0
+        AllSlidesElems.each(function () {
+            AllSlidesWidth = AllSlidesWidth + $(this).innerWidth()
         })
+        if (AllSlidesWidth > slider.innerWidth()) {
+            var slider_before = '<div class="slider-before"></div>'
+            if (!slider.parents('.sb-section').find('.slider-before').length)
+                $(slider_before).prependTo(slider.closest('.sb-description-wrapper'))
+            slider.parents('.sb-section').find('.slider-before').css({
+                'height': $(window).height() - $('header').innerHeight() + 'px',
+            })
+        }
+        return false
     }
-    return false
+    else return false
 };
 
 let CheckAbsSliders = function (sliders) {
