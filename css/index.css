@@ -280,8 +280,8 @@
 }
 
 @media screen and (max-width: 1199px) {
-    .sb-section-top .sb-description-wrapper {
-        min-height: 100vh;
+    .sb-section-top {
+        height: calc(100vh - 120px) !important;
     }
      .sb-section-top .sb-description-block {
          position: absolute;
@@ -383,6 +383,9 @@
 }
 
 @media screen and (max-width: 767px) {
+     .sb-section-top {
+        height: calc(100vh - 70px) !important;
+    }
     .sb-section-top h2.heading {
         font-size: 60px;
         line-height: 110%;

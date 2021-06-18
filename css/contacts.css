@@ -9,10 +9,22 @@
    .contacts-page .sb1-description-block .description-text > br {
        display: block;
    }
+    .contacts-page .sb1-description-wrapper {
+        -webkit-transform: translate3d(0, 50px, 0) !important;
+                transform: translate3d(0, 50px, 0) !important;
+        margin-top: 55px;
+    }
+    .contacts-page .sb1-description-wrapper.animate-init {
+        -webkit-transform: translate3d(0,0,0) !important;
+                transform: translate3d(0,0,0) !important;
+    }
 }
 
 @media screen and (max-width: 767px) {
      .contacts-page  .sb1-bg-block {
       height: 106vw;
   } 
+    .contacts-page .sb1-description-wrapper {
+        margin-top: 45px;
+    }
 }

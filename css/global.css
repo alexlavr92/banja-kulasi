@@ -1303,9 +1303,12 @@ border-radius: 0 !important;
         line-height: 190%;
         padding-left: 40px;
     }
-    .sb-section:first-child  .pagination-item {
-        top: 120px;
+    .sb-section:first-child .pagination-item {
+        top: 0;  
     }
+/*     .sb-section:first-child  .pagination-item {
+        top: 120px;
+    } */
 
     .sb-section-dark   .pagination-item {
         color: #ffffff;
@@ -1336,7 +1339,8 @@ border-radius: 0 !important;
         background: #242B31; 
     }
 
-    .link-download {
+    .link-download,
+    .link-blue {
         font-size: 14px;
         line-height: 170%;
         font-weight: 500;
@@ -1361,9 +1365,7 @@ border-radius: 0 !important;
         top: 6vh;
         left: 30px;
     }
-    .sb-section:first-child .pagination-item {
-        top: 12vh;  
-    }
+
     h2 {
         font-size: 35px;
         line-height: 110%;
@@ -2807,7 +2809,8 @@ border-color: transparent transparent transparent #ffffff;
         -o-transition: none;
         transition: none; 
     }
-    .android .sb-section:not(:first-child) {
+    .android .sb-section:not(:first-child),
+    .ios .sb-section:not(:first-child) {
          margin-top: -1px;
      }
     .sb-section-dark {
@@ -3050,10 +3053,6 @@ border-color: transparent transparent transparent #ffffff;
 }
 
 @media screen and (max-width: 1199px) {
-    .sb1-section:first-child  .sb1-bg-block {
-        padding-top: 120px;
-    }
-
     .sb1-bg-block, .sb1-bg-block.style2 {
         position: relative;
         width: 96%;
@@ -3144,12 +3143,7 @@ border-color: transparent transparent transparent #ffffff;
         font-size: 16px;
         margin-bottom: 10vw;
     }
-   /*  .sb1-description-block > h3.heading {
-    font-size: 14px;
-} */
-.sb1-section:first-child .sb1-bg-block {
-    padding-top: 70px;
-}
+
 }
 
 @media screen and (max-width: 359px) {
@@ -3743,9 +3737,6 @@ section:not(.active) .sb3-slider-wrapper {
     /* white-space: nowrap; */
 } 
 
-.sb-section:first-child .sb3-bg-block.style2 {
-    padding-top: 120px;
-}
 }
 
 @media screen and (max-width: 767px) {
@@ -3781,9 +3772,6 @@ section:not(.active) .sb3-slider-wrapper {
         padding-bottom: 16vw;
     }
 
-    .sb-section:first-child .sb3-bg-block.style2 {
-        padding-top: 70px;
-    }
    .sb3-bg-block.style2 .sb-bg-wrapper{
         height: 105vw;
     }

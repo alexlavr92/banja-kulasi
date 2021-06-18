@@ -79,7 +79,6 @@ let LoadBackgroundImage = function (bg_elem) {
 let EditSb_Bg_wrapperTop = function (bg_elem) {
     if (docWidth < 1200) {
         bg_elem.css({
-            'top': $('header').innerHeight() + 'px',
             'height': 'calc(100vh - ' + $('header').innerHeight() + 'px)',
         })
     }
@@ -169,6 +168,12 @@ jQuery(document).ready(function ($) {
     })($.fn.removeClass);
     //----------------------//
 
+
+    if (docWidth < 1200) {
+        $('main').css({
+            'margin-top': $('header').innerHeight() + 'px',
+        })
+    }
 
 
 
@@ -1193,11 +1198,14 @@ let ScrollSectionAdaptive = function () {
             }
             else {
                 if (ScrollTop <= ActiveSection.offset().top && ScrollTop > 0) {
-                    NextSection = ActiveSection.prev()
-                    NextSection.addClass('active')
-                    ActiveSection.removeClass('active')
-                    ActiveSection = NextSection
-                    AnimationSection(ActiveSection)
+                    if (!ActiveSection.is(':first-child')) {
+                        NextSection = ActiveSection.prev()
+                        NextSection.addClass('active')
+                        ActiveSection.removeClass('active')
+                        ActiveSection = NextSection
+                        // console.log(ActiveSection)
+                        AnimationSection(ActiveSection)
+                    }
                 }
                 // console.log('наверх')
             }
