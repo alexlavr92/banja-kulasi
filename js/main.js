@@ -710,7 +710,7 @@ jQuery(document).ready(function ($) {
                     }
                 }
                 $(this).removeClass('modal-open')
-                if ($('.modal-blocker').length == 1 && docWidth < 1200) {
+                if ($('.modal-blocker').length == 1 && docWidth < 1200 && !$('.menu-wrapper.open').length) {
                     blockScroll('close')
                 }
             },
@@ -805,48 +805,53 @@ jQuery(document).ready(function ($) {
     //----------------------//
 
     // Функционал изменения input 
-    $('body').on('change input', '.input-default', function (e) {
-        var RemoveInputVal = $(this).next('a')
-        if ($(this).val() != '') {
-            RemoveInputVal.fadeIn()
-        }
-        else {
-            RemoveInputVal.fadeOut(100)
-        }
+    $('body').on('change input focus', '.input-default, .checkbox-default', function (e) {
         if ($(this).closest('.modal-call-form').length) {
-            var CallForm = $(this).closest('.modal-call-form')
-            var CallFromDisabled = false
-            CallForm.find('.input-default').each(function () {
-                if ($(this).val() == '') {
-                    CallFromDisabled = true
-                    $(this).closest('.input-wrapper.invalid').removeClass('invalid')
-                    $(this).siblings('.invalid-text').remove()
-                }
-                if ($(this).hasClass('input-phone')/*  && e.type == "change" */)
-                    CallFromDisabled = ValidatePhone($(this))
-                if ($(this).hasClass('input-mail') /* && e.type == "change" */)
-                    CallFromDisabled = ValidateEmail($(this))
-            })
-            if (CallFromDisabled == false) {
-                if (!CallForm.find('.invalid').length) {
-                    CallForm.find('.btn').removeAttr('disabled')
-                }
-            }
-            else {
-                CallForm.find('.btn').attr('disabled', true)
-            }
+            $(this).siblings('.invalid-text').remove()
+            $(this).closest('.invalid').removeClass('invalid')
         }
-    })
-    $('body').on('click touchend', '.input-wrapper > a', function (e) {
-        var PrevInput = $(this).prev('.input-default')
-        PrevInput.val('').trigger('change')
-        $(this).fadeOut(100)
     })
     //----------------------//
 
     // Обработчик отправки формы обратной связи //
     $('body').on('submit', '.modal-call-form', function (e) {
-        alert('Форма отправлена!')
+        var CallForm = $(this),
+            InvalidCount = 0
+        CallForm.find('.input-default').each(function () {
+            if ($(this).val() == '' && !$(this).hasClass('input-name')) {
+                $(this).closest('.input-wrapper').addClass('invalid')
+                var InvalidText = '<span class="invalid-text">Заполните обязательное поле</span>'
+                $(this).siblings('.invalid-text').remove()
+                $(InvalidText).appendTo($(this).closest('.input-wrapper.invalid'))
+                InvalidCount = InvalidCount + 1
+            }
+            else {
+                if ($(this).hasClass('input-phone')) {
+                    if (!ValidatePhone($(this))) {
+                        InvalidCount = InvalidCount + 1
+                    }
+                }
+                if ($(this).hasClass('input-mail')) {
+                    if (!ValidateEmail($(this))) {
+                        InvalidCount = InvalidCount + 1
+                    }
+                }
+            }
+        })
+        var PersonalCheckbox = CallForm.find('.checkbox-personal')
+        console.log(PersonalCheckbox)
+        if (PersonalCheckbox.prop('checked') == false) {
+            PersonalCheckbox.closest('.checkbox-wrapper').addClass('invalid')
+            InvalidCount = InvalidCount + 1
+        }
+        if (!$(this).find('.invalid').length && InvalidCount == 0) {
+            // Тут можно написать функционал отправки формы по ajax
+            console.log('форма отправлена')
+            var ThisBtnWrapper = $(this).find('.btn-wrapper')
+            ThisBtnWrapper.children('.btn').attr('disabled', true)
+            var SuccesText = "<span class='success-text'>Форма успешно отправлена!</span>"
+            $(SuccesText).prependTo(ThisBtnWrapper)
+        }
     })
     //----------------------//
 
@@ -1298,19 +1303,13 @@ let EditSb_Bg_slider = function (elem) {
 let ValidatePhone = function (phone) {
     if (phone.val() != ''
         && !phone.inputmask('isComplete')) {
-        if (!phone.closest('.input-wrapper.invalid').length) {
-            phone.closest('.input-wrapper').addClass('invalid')
-            var InvalidText = '<span class="invalid-text">Указан неверный формат номера телефона</span>'
-            $(InvalidText).appendTo(phone.closest('.input-wrapper.invalid'))
-            return true
-        }
-    }
-    else if (phone.val() != '') {
-        /*  console.log('else') */
-        phone.closest('.input-wrapper.invalid').removeClass('invalid')
+        phone.closest('.input-wrapper').addClass('invalid')
+        var InvalidText = '<span class="invalid-text">Указан неверный формат номера телефона</span>'
         phone.siblings('.invalid-text').remove()
+        $(InvalidText).appendTo(phone.closest('.input-wrapper.invalid'))
         return false
     }
+    else return true
 }
 //----------------------//
 
@@ -1319,18 +1318,13 @@ let ValidatePhone = function (phone) {
 let ValidateEmail = function (email) {
     var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     if (email.val() != '' && reg.test(email.val()) == false) {
-        if (!email.closest('.input-wrapper.invalid').length) {
-            email.closest('.input-wrapper').addClass('invalid')
-            var InvalidText = '<span class="invalid-text">Указан неверный формат e-mail</span>'
-            $(InvalidText).appendTo(email.closest('.input-wrapper.invalid'))
-            return true;
-        }
-    }
-    else if (email.val() != '') {
-        email.closest('.input-wrapper.invalid').removeClass('invalid')
+        email.closest('.input-wrapper').addClass('invalid')
+        var InvalidText = '<span class="invalid-text">Указан неверный формат e-mail</span>'
         email.siblings('.invalid-text').remove()
+        $(InvalidText).appendTo(email.closest('.input-wrapper.invalid'))
         return false
     }
+    else return true
 }
 //----------------------//
 
