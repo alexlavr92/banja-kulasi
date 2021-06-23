@@ -141,7 +141,29 @@ let InitPaginationDownBtn = function (docWidth) {
 
 //----------------------//
 
+// Функционал запуска preloader заново  //
+if (jQuery('.preloader').length) {
+    var PreloaderImg = jQuery('.preloader').find('img'),
+        PreloaderImgSrc = PreloaderImg.attr('src')
+    // console.log(PreloaderImgSrc)
+    PreloaderImg.attr('src', PreloaderImgSrc)
+    var delaypreloader = 4700
+    let TimerPreloader = setTimeout(function () {
+        jQuery('.preloader').fadeOut({
+            complete: function () {
+                jQuery(this).remove()
+                TimerPreloader = null
+                // console.log(TimerPreloader)
+                return false
+            }
+        })
+    }, delaypreloader)
+}
+//----------------------//
+
 jQuery(document).ready(function ($) {
+
+
 
     // функционал отслеживания появления и удаления класса//
     (function (func) {
@@ -1380,6 +1402,7 @@ let ScrollBarOn = function () {
     }
 }
 //----------------------//
+
 
 $(window).on('resize', function (e) {
     var NewwindowHeight = $(window).height()

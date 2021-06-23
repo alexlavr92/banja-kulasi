@@ -7,7 +7,17 @@
    07 Modal CSS
 */
 
-
+/*--- Start Preloader CSS */
+.preloader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #242B31;
+    z-index: 3;
+    align-items: center;
+    justify-content: center;
+}
+/* --- End Preloader CSS--- */
 
 /* --- Start 01 UI CSS --- */
     .visually-hidden:not(:focus):not(:active),
@@ -2365,6 +2375,9 @@ display: none;
     .menu-bottom-develop .develop-one {
         margin-left: 0;
     }
+       .menu-wrapper .menu-bottom:before {
+           width: calc(100% + 60px);
+       }
 }
 
 @media screen and (max-width: 359px) {
@@ -2375,6 +2388,9 @@ display: none;
         padding-left: 20px;
         padding-right: 20px;
     }
+       .menu-wrapper .menu-bottom:before {
+           width: calc(100% + 40px);
+       }
 }
 /* ---End Menu CSS --- */
 
