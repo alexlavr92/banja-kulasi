@@ -4442,7 +4442,7 @@ line-height: 100%;
     display: inline-block;
     margin-left: 5px;
 }
-.sb5-section > .slider-before {
+.sb5-section  .slider-before {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -4452,17 +4452,17 @@ line-height: 100%;
 }
 
 
-.sb5-section.sb-section-dark:not(.sb-section-chok) > .slider-before {
+.sb5-section.sb-section-dark:not(.sb-section-chok)  .slider-before {
     background: -o-linear-gradient(right, #242B31 0%, rgba(36, 43, 49, 0) 100%);
     background: -webkit-gradient(linear, right top, left top, from(#242B31), to(rgba(36, 43, 49, 0)));
     background: linear-gradient(-90deg, #242B31 0%, rgba(36, 43, 49, 0) 100%);
 }
-.sb5-section.sb-section-chok > .slider-before {
+.sb5-section.sb-section-chok  .slider-before {
     background: -o-linear-gradient(right, rgba(34, 31, 29, 0.85) 0%, rgba(34, 31, 29, 0) 100%);
     background: -webkit-gradient(linear, right top, left top, from(rgba(34, 31, 29, 0.85)), to(rgba(34, 31, 29, 0)));
     background: linear-gradient(-90deg, rgba(34, 31, 29, 0.85) 0%, rgba(34, 31, 29, 0) 100%);
 }
-.sb5-section.sb-section-light > .slider-before {
+.sb5-section.sb-section-light .slider-before {
    background: -o-linear-gradient(right, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
    background: -webkit-gradient(linear, right top, left top, from(#FFFFFF), to(rgba(255, 255, 255, 0)));
    background: linear-gradient(-90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);

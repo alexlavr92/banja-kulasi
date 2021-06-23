@@ -839,7 +839,7 @@ jQuery(document).ready(function ($) {
             }
         })
         var PersonalCheckbox = CallForm.find('.checkbox-personal')
-        console.log(PersonalCheckbox)
+        // console.log(PersonalCheckbox)
         if (PersonalCheckbox.prop('checked') == false) {
             PersonalCheckbox.closest('.checkbox-wrapper').addClass('invalid')
             InvalidCount = InvalidCount + 1
