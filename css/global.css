@@ -17,6 +17,12 @@
     align-items: center;
     justify-content: center;
 }
+.preloader.white {
+    background: #ffffff;
+}
+.preloader.chok {
+    background: #221F1D;
+}
 /* --- End Preloader CSS--- */
 
 /* --- Start 01 UI CSS --- */
