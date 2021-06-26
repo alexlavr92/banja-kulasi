@@ -4337,7 +4337,7 @@ line-height: 100%;
     margin-bottom: 60px;
 }
 .sb5-section .sb5-description-block > .flex-block:first-child h2.heading {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
 }  
 .sb5-section .sb5-description-block > .flex-block:first-child .select-wrapper {
     margin-left: auto;

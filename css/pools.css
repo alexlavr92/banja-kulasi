@@ -218,15 +218,15 @@
   .sb5-section .links-blue-block > .link-blue {
       margin-left: 30px;
   }
+      .pools-page .sb-section .slider-wrapper.full-width {
+        margin-bottom: 0;
+    }
 }
 
 @media screen and (max-width: 359px) {
     .sb5-section .links-blue-block > .link-blue {
         margin-left: 20px;
     } 
-    .pools-page .sb-section .slider-wrapper.full-width {
-        margin-bottom: 0;
-    }
 
     .sb2-description-wrapper {
         padding-left: 0;
