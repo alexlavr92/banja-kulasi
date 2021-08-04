@@ -14,8 +14,12 @@
     height: 100%;
     background: #242B31;
     z-index: 3;
-    align-items: center;
-    justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
 }
 .preloader.white {
     background: #ffffff;
@@ -1416,7 +1420,7 @@ border-radius: 0 !important;
         color: #ffffff;
         left: 70px;
         font-size: 25px;
-        z-index: 1;
+        z-index: 2;
         line-height: 190%;
         padding-left: 40px;
     }
@@ -2774,6 +2778,7 @@ section.active .slider-wrapper{
     height: 5px;
     border-radius: 50%;
     left: 0;
+    background: #ffffff;
     top: 14px;
 }
 
@@ -3511,17 +3516,70 @@ section:not(.active) .sb2-slider-wrapper {
         max-width: 530px;
        /*  transform: translateY(-35px); */
     }
+
      .sb2-description-wrapper.animate-init {
         -webkit-transform: translate3d(0, -35px, 0) !important;
                 transform: translate3d(0, -35px, 0) !important;
         padding-bottom: 10vw !important;
      }
+    .sb2-slider-wrapper + .sb2-description-wrapper {
+      margin-top: 73px;
+    }
+     .sb2-slider-wrapper  + .sb2-description-wrapper.animate-init {
+         -webkit-transform: translate3d(0, 0, 0) !important;
+                 transform: translate3d(0, 0, 0) !important;
+         padding-bottom: 13vw !important;
+     }
+      .sb2-slider-wrapper {
+        position: relative;
+        height: 504px;
+        margin-right: -20px;
+        margin-left: -70px;
+        width: calc(100% + 90px);
+        top: auto;
+        -webkit-transform: none;
+            -ms-transform: none;
+                transform: none;
+        right: auto;
+       /*  padding-top: 50px; */
+      }
+      .sb2-slider-wrapper.slider-wrapper .pagination-list {
+          display: -webkit-box;
+          display: -ms-flexbox;
+          display: flex;
+          width: 100%;
+          left: 0;
+          -webkit-transform: none;
+              -ms-transform: none;
+                  transform: none;
+          padding-left: 70px;
+          -webkit-box-pack: start;
+              -ms-flex-pack: start;
+                  justify-content: flex-start;
+          bottom: -20px;
+      }
 }
 @media screen and (max-width: 767px) {
     .sb2-bg-block {
         margin: 0 -30px;
         width: calc(100% + 60px);
     }
+    .sb2-slider-wrapper {
+        margin-left: -30px;
+        margin-right: -30px;
+        width: calc(100% + 60px);
+        height: 66vw;
+        margin-top: 30px !important;
+    }
+    .sb2-slider-wrapper.slider-wrapper .pagination-list {
+        padding-left: 50px;
+    }
+     .sb2-slider-wrapper .pagination-row .pagination-li.current {
+         width: 124px;
+     }
+     .sb2-slider-wrapper .pagination-row .pagination-li {
+         width: 30px;
+     }
     .sb2-bg-block .sb-bg-wrapper {
         height: 78vw;
     }
@@ -3568,10 +3626,17 @@ section:not(.active) .sb2-slider-wrapper {
         width: 100%;
         max-width: none;
     }
+    .sb2-description-wrapper .description-list {
+        width: calc(100% + 10px);
+    }
+    .sb2-description-wrapper .description-list li {
+        font-size: 16px;
+    }
 }
 
 @media screen and (max-width: 359px) {
-    .sb2-bg-block {
+    .sb2-bg-block,
+     .sb2-slider-wrapper {
         margin: 0 -20px;
         width: calc(100% + 40px);
     }
@@ -4653,6 +4718,87 @@ line-height: 100%;
     .sb5-section:before,
     .sb5-section:after {
         content: none;
+    }
+    .sb-section .sb5-description-wrapper {
+        padding: 150px 0 100px;
+    }
+    .sb5-description-wrapper.style2 .new-container {
+        margin-top: 0;
+    }
+    .sb5-section .slider-before {
+        display: none;
+    }
+    .sb5-slider-wrapper.full-width .swiper-lazy:before {
+        content: none;
+    }
+    .sb-section  .sb5-slider-wrapper.slider-wrapper.full-width {
+        padding-right: 70px;
+    }
+    .sb5-slider-wrapper .swiper-scrollbar {
+        display: none;
+    }
+     .sb5-slider-wrapper .swiper-wrapper {
+         margin: 0 -15px;
+         width: calc(100% + 30px);
+         -ms-flex-wrap: wrap;
+             flex-wrap: wrap;
+     }
+     .sb5-slider-wrapper.full-width .swiper-slide {
+         max-width: none !important;
+         -ms-flex-preferred-size: calc(50% - 30px) !important;
+             flex-basis: calc(50% - 30px) !important;
+         width: calc(50% - 30px);
+         margin: 0 15px;
+     }
+     .sb5-slider-wrapper.full-width .swiper-slide:nth-child(2n+1) .swiper-lazy {
+         height: 34vw;
+     }
+     .sb5-slider-wrapper.full-width .swiper-slide:nth-child(2n) .swiper-lazy {
+         height: 46vw;
+     }
+      .sb5-slider-wrapper.full-width .swiper-slide:not(:nth-child(-n+2)) {
+          margin-top: 80px;
+      }
+     .sb5-slider-wrapper.full-width .sb5-slide {
+         margin-right: 0;
+     }
+     .sb5-description-wrapper .link-with-arrow {
+         position: relative;
+         right: auto;
+         margin-left: 70px;
+         margin-top: 50px;
+     }
+}
+@media screen and (max-width: 767px) {
+    .sb5-slider-wrapper .swiper-wrapper {
+        width: 100%;
+        margin: 0;
+    }
+    .sb-section .sb5-slider-wrapper.slider-wrapper.full-width {
+        padding-right: 20px;
+    }
+    .sb5-slider-wrapper.full-width .swiper-slide {
+        -ms-flex-preferred-size: 100% !important;
+            flex-basis: 100% !important;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+    .sb5-slider-wrapper.full-width .swiper-slide:nth-child(2n+1) .swiper-lazy {
+        height: 260px;
+    }
+    .sb5-slider-wrapper.full-width .swiper-slide:nth-child(2n) .swiper-lazy {
+        height: 350px;
+    }
+    .sb5-slider-wrapper.full-width .swiper-slide + .swiper-slide {
+        margin-top: 60px !important;
+    }
+    .sb5-description-wrapper .link-with-arrow {
+        margin-left: 30px;
+    }
+}
+@media screen and (max-width: 359px) {
+    .sb5-description-wrapper .link-with-arrow {
+        margin-left: 20px;
     }
 }
 /* --- End Standart Block 05 CSS --- */

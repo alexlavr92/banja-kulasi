@@ -788,6 +788,19 @@ jQuery(document).ready(function ($) {
                 },
             },
         })
+        if (abs_slider[index].$el.closest('.sb5-slider-wrapper').length && docWidth < 1200) {
+            var Slider = abs_slider[index].$el
+            abs_slider[index].destroy()
+            console.log(Slider)
+            abs_slider.pop()
+            Slider.find('.swiper-lazy').each(function (index, elem) {
+                $(this).css({
+                    'background-image': 'url("' + $(this).attr('data-background') + '")'
+                }).removeAttr('data-background').removeClass('swiper-lazy-loading').addClass('swiper-lazy-loaded')
+                $(this).children('*').remove()  //:not(.btn)
+            })
+        }
+
     }
     if ($('.slider-wrapper.full-width').length) {
         /*  console.log($('section .new-container').innerWidth()) */
