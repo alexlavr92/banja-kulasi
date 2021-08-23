@@ -679,7 +679,17 @@ cursor: pointer;
 .select-dark ~ .select2-container .select2-selection--single {
     border-color: rgba(255, 255, 255, 0.2);
     color: #ffffff;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
 }
+.select-dark ~ .select2-container:not(.select2-container--open):hover .select2-selection--single,
+.select-dark ~ .select2-container.select2-container--open .select2-selection--single {
+    background: #ffffff;
+    color: #242B31;
+    border: 1px solid rgba(36, 43, 49, .1);
+}
+
 .select-light ~ .select2-container .select2-selection--single {
     border-color: #D3D5D6;
     color: #242B31;
@@ -716,6 +726,8 @@ cursor: pointer;
 .select-dark ~ .select2-container .select2-selection__arrow {
     border-color: #ffffff;
 }
+.select-dark ~ .select2-container:not(.select2-container--open):hover .select2-selection__arrow,
+.select-dark ~ .select2-container.select2-container--open .select2-selection__arrow,
 .select-light ~ .select2-container .select2-selection__arrow {
     border-color: #242B31;
 }
@@ -919,7 +931,8 @@ border-radius: 0 !important;
     top: 50%;
     left: 50%;
     width: 20px;
-    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+ -webkit-transform: translate(-50%, -50%);
         -ms-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
     height: 1px;
@@ -942,7 +955,7 @@ border-radius: 0 !important;
 .link-with-arrow > span:after {
     width: 8px;
     height: 8px;
-    top: 25px;
+    top: 24.5px;
     border-radius: 1px;
 }
 .link-with-arrow.link-white > span:after {
@@ -4025,6 +4038,9 @@ section:not(.active) .sb3-slider-wrapper {
     .sb3-description-block.style2 + .link-with-arrow > .arrow-next {
         margin-left: 15px;
     }
+    .sb3-description-block .btn-bron_wrapper {
+        margin-top: 40px;
+    }
     .sb3-description-block .btn-bron_wrapper > .btn {
         width: 200px;
         text-align: center;
@@ -4525,7 +4541,7 @@ line-height: 100%;
 }
 
 .sb5-slider-wrapper.full-width .sb5-slide > .heading  img {
-    vertical-align: text-top; 
+    vertical-align: -5px; 
     display: inline-block;
     margin-left: 5px;
 }
@@ -4768,6 +4784,46 @@ line-height: 100%;
          margin-left: 70px;
          margin-top: 50px;
      }
+     .sb5-section .sb5-description-block > .flex-block:first-child .select-wrapper {
+         margin-left: 0;
+         margin-right: 0;
+         margin-top: 70px;
+ /*         position: relative; */
+     }
+/*       .sb5-section .sb5-description-block > .flex-block:first-child .select-wrapper:before {
+          content: '';
+          position: absolute;
+          width: 12px;
+        height: 12px;
+        border-right: 1px solid;
+        border-bottom: 1px solid;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+        right: 25px;
+        top: 17px;
+      } */
+     .sb5-section .sb5-description-block > .flex-block:first-child .select-custom {
+         height: 100%;
+         width: 100%;
+         padding: 0 30px 0 25px;
+         font-size: 14px;
+         letter-spacing: 0.1em;
+         min-width: 300px;
+         text-transform: uppercase;
+         -webkit-appearance: none;
+            -moz-appearance: none;
+                 appearance: none;
+         background-position: 93% 50%;
+         background-size: 15px 7px;
+         background-repeat: no-repeat;
+     }
+       .sb5-section .sb5-description-block > .flex-block:first-child .select-custom.select-dark {
+           color: #ffffff;
+           background-color: #242B31;
+           border: 1px solid rgba(255, 255, 255, 0.2);
+           background-image: url(../media/icons/arrow-down-dark.png);
+       }
 }
 @media screen and (max-width: 767px) {
     .sb5-slider-wrapper .swiper-wrapper {
@@ -4794,6 +4850,13 @@ line-height: 100%;
     }
     .sb5-description-wrapper .link-with-arrow {
         margin-left: 30px;
+    }
+    .sb5-section .sb5-description-block > .flex-block:first-child .select-wrapper {
+        margin-top: 50px;
+        width: 100%;
+    }
+    .sb5-section .sb5-description-block > .flex-block:first-child .select-custom {
+        min-width: auto;
     }
 }
 @media screen and (max-width: 359px) {
@@ -5222,6 +5285,14 @@ line-height: 100%;
     }
     .modal-conf-wrapper .scrollbar-inner:not(.scroll-wrapper) {
         padding-right: 0 !important;
+    }
+    .modal.modal-video {
+        max-width: 90vw;
+        max-height: 51vw;
+    }
+    .modal.modal-video > .modal-close {
+        top: -50px;
+        right: 0;
     }
 }
 

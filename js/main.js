@@ -150,6 +150,9 @@ if (jQuery('.preloader').length) {
     var delaypreloader = 4700
     let TimerPreloader = setTimeout(function () {
         jQuery('.preloader').fadeOut({
+            start: function () {
+                $(this).children('img').fadeOut(100);
+            },
             complete: function () {
                 jQuery(this).remove()
                 TimerPreloader = null
@@ -603,9 +606,9 @@ jQuery(document).ready(function ($) {
         })
     }
 
-    if ($('.sb-section .slider-wrapper:not(.full-width) .swiper-container').length) {
+    if ($('.sb-section .slider-wrapper:not(.full-width) .swiper-container:not(.apartmenet-slider-container)').length) { // новое
         var sb_slider = []
-        $('.sb-section .slider-wrapper:not(.full-width) .swiper-container').each(function (i, elem) {
+        $('.sb-section .slider-wrapper:not(.full-width) .swiper-container:not(.apartmenet-slider-container)').each(function (i, elem) { // новое
             InitSbSlider(i, $(elem))
         })
 
@@ -791,7 +794,7 @@ jQuery(document).ready(function ($) {
         if (abs_slider[index].$el.closest('.sb5-slider-wrapper').length && docWidth < 1200) {
             var Slider = abs_slider[index].$el
             abs_slider[index].destroy()
-            console.log(Slider)
+            // console.log(Slider)
             abs_slider.pop()
             Slider.find('.swiper-lazy').each(function (index, elem) {
                 $(this).css({
@@ -806,7 +809,7 @@ jQuery(document).ready(function ($) {
         /*  console.log($('section .new-container').innerWidth()) */
         EditAbsSliderWidth($('.slider-wrapper.full-width'), docWidth)
         var abs_slider = []
-        $('.slider-wrapper.full-width .swiper-container').each(function (index, elem) {
+        $('.slider-wrapper.full-width .swiper-container:not(.apartmenet-slider-container)').each(function (index, elem) { // новое
             InitSbAbsSlider(index, $(elem))
             /*  console.log(abs_slider) */
         })
@@ -1102,6 +1105,52 @@ jQuery(document).ready(function ($) {
         ScrollSectionAdaptive()
     //----------------------//
 
+
+    // Иницализация слайдера апартаментов на странице номеров // новое
+    let InitSbApartmentSlider = function (slider) {
+        apartmentSlider = new Swiper(slider, {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            /*    grabCursor: true, */
+            speed: 1000,
+            touchReleaseOnEdges: true,
+            watchSlidesVisibility: true,
+            watchSlidesProgress: true,
+            watchOverflow: true,
+            lazy: true,
+            pagination: {
+                el: slider.next('.pagination-list'),
+                lockClass: 'lock',
+                clickable: true,
+                bulletClass: 'pagination-li',
+                bulletActiveClass: 'current',
+                type: 'bullets',
+            },
+        })
+    }
+
+    if ($('.apartmenet-slider-container').length) {
+        var apartmentSlider
+        // console.log($('.apartmenet-slider-container'))
+        $('.apartmenet-slider-container').each(function (index, elem) {
+            InitSbApartmentSlider($(this))
+        })
+
+    }
+    //----------------------//
+
+    // Обработчик скрола характеристик на странице номера отеля при разрешении меньше 1200 // новое
+    if (docWidth < 1200) {
+        $('.apartments-page .scrollbar-inner').scroll(function () {
+            if ($(this).scrollTop() != 0) {
+                $(this).addClass('scroll-start')
+            }
+            else {
+                $(this).removeClass('scroll-start')
+            }
+        })
+    }
+    //----------------------//
 
 }) // окончание ready
 
