@@ -4573,77 +4573,77 @@ line-height: 100%;
 
 @-webkit-keyframes sb-bottom-left {
    0% {
-    left: -10%;
-    bottom: -10%;   
+      -webkit-transform: translate(-10%, -10%);
+              transform: translate(-10%, -10%);
    }
    25% {
-       left: -5%;
-       bottom: -5%;
+         -webkit-transform: translate(-5%, -5%);
+                 transform: translate(-5%, -5%);
    }
    50% {
-       left: 0;
-       bottom: 0;
+         -webkit-transform: translate(0, 0);
+                 transform: translate(0, 0);
    }
    75% {
-       left: -5%;
-       bottom: -5%;
+         -webkit-transform: translate(-5%, -5%);
+                 transform: translate(-5%, -5%);
    }
    100% {
-    left: -10%;  
-    bottom: -10%;
+      -webkit-transform: translate(-10%, -10%);
+              transform: translate(-10%, -10%);
    }
 }
 
 @keyframes sb-bottom-left {
    0% {
-    left: -10%;
-    bottom: -10%;   
+      -webkit-transform: translate(-10%, -10%);
+              transform: translate(-10%, -10%);
    }
    25% {
-       left: -5%;
-       bottom: -5%;
+         -webkit-transform: translate(-5%, -5%);
+                 transform: translate(-5%, -5%);
    }
    50% {
-       left: 0;
-       bottom: 0%;
+         -webkit-transform: translate(0, 0);
+                 transform: translate(0, 0);
    }
    75% {
-       left: -5%;
-       bottom: -5%;
+         -webkit-transform: translate(-5%, -5%);
+                 transform: translate(-5%, -5%);
    }
    100% {
-    left: -10%;  
-    bottom: -10%;
+      -webkit-transform: translate(-10%, -10%);
+              transform: translate(-10%, -10%);
    }
 }
 
 @-webkit-keyframes sb-top-right {
     0% { 
-        top: -22%;
-        right: -50%;
+         -webkit-transform: translate(-50%, -22%); 
+                 transform: translate(-50%, -22%);
     }
     50% { 
-        top: -20%;
-        right: -45%;
+         -webkit-transform: translate(-45%, -20%); 
+                 transform: translate(-45%, -20%);
     }
     100% {
-          top: -22%;
-        right: -50%;
+         -webkit-transform: translate(-50%, -22%);
+                 transform: translate(-50%, -22%);
     }
 }
 
 @keyframes sb-top-right {
     0% { 
-        top: -22%;
-        right: -50%;
+         -webkit-transform: translate(-50%, -22%); 
+                 transform: translate(-50%, -22%);
     }
     50% { 
-        top: -20%;
-        right: -45%;
+         -webkit-transform: translate(-45%, -20%); 
+                 transform: translate(-45%, -20%);
     }
     100% {
-          top: -22%;
-        right: -50%;
+         -webkit-transform: translate(-50%, -22%);
+                 transform: translate(-50%, -22%);
     }
 }
 .sb5-section:before,
@@ -4669,7 +4669,7 @@ line-height: 100%;
 }
 
 .sb5-section:before {
-    left: -10%;
+    left: 0;
     right: auto;
     top: auto;
     bottom: -2%;
@@ -4677,10 +4677,10 @@ line-height: 100%;
             animation: sb-bottom-left 15s infinite linear;
 }
 .sb5-section:after {
-      top: -20%;
+      top: -7%;
     bottom: auto;
     left: auto;
-    right: -50%;
+    right: -90%;
     -webkit-animation: sb-top-right 17s infinite linear;
             animation: sb-top-right 17s infinite linear;
 }

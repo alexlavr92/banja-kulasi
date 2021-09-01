@@ -110,6 +110,9 @@
          margin: 0 -30px;
          padding: 0 30px 20px;
      }
+      .water-page .sb-section .sb5-description-wrapper {
+          padding-bottom: 50px;
+      }
 }
 
 @media screen and (max-width: 359px) {
