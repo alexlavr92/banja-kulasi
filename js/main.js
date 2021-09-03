@@ -1152,6 +1152,24 @@ jQuery(document).ready(function ($) {
     }
     //----------------------//
 
+    // Обработчик клика на "Показать ещё" на странице магазина // новое
+    if (docWidth < 1200) {
+        $('body').on('click', '.sb5-slider-wrapper .btn-wrapper > .btn', function (e) {
+            var prevSlides = $(this).parent('.btn-wrapper').siblings('.swiper-container').find('.swiper-slide:not(:nth-child(-n+4))')
+            console.log(prevSlides)
+            $(this).toggleClass('open')
+            if ($(this).hasClass('open')) {
+                prevSlides.fadeIn()
+            }
+            else {
+                prevSlides.hide(100)
+            }
+            var TmpText = $(this).text()
+            $(this).text($(this).attr('data-text'))
+            $(this).attr('data-text', TmpText)
+        })
+    }
+    //----------------------//
 }) // окончание ready
 
 

@@ -247,6 +247,7 @@
         background: #242B31;
         z-index: -1;
     }
+
     .btn-dark.btn-animate:not([disabled]):hover:before,
     .btn-dark.btn-animate:not([disabled]):active:before {
         -webkit-transform: translate3d(0,100%,0);
@@ -3318,7 +3319,13 @@ border-color: transparent transparent transparent #ffffff;
         font-size: 16px;
         margin-bottom: 10vw;
     }
-
+    .sb-section .description-grafik_item > div:last-child {
+        text-align: left;
+        min-width: 100%;
+    }
+    .sb-section .description-grafik_item + .description-grafik_item {
+        margin-top: 10px;
+    }
 }
 
 @media screen and (max-width: 359px) {
