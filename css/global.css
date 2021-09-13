@@ -187,6 +187,7 @@
         padding: 0 30px;
         border: none;
         outline: none;
+        text-align: center;
         line-height: 60px;
         font-family: 'Gill Sans';
         font-weight: 400;
@@ -750,6 +751,9 @@ cursor: pointer;
     -webkit-transition: all .2s ease;
     -o-transition: all .2s ease;
     transition: all .2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .select2-dropdown {
 border-radius: 0 !important; 
@@ -3056,7 +3060,9 @@ border-color: transparent transparent transparent #ffffff;
          width: calc(100% - 90px);
          bottom: -25px;
      }
-
+     .sb-section .description-option {
+         width: 100%;
+     }
 }
 
 @media screen and (max-width: 767px) {
@@ -3191,6 +3197,13 @@ border-color: transparent transparent transparent #ffffff;
     margin-top: 40px;
 }
 
+.sb1-description-block .btn-bron_wrapper {
+    margin-top: 70px;
+}
+.sb1-description-block .btn-bron_wrapper > .btn {
+    display: block;
+}
+
 @media screen and (max-width: 1440px) {
     .sb1-bg-block {
         width: 60%;
@@ -3291,6 +3304,9 @@ border-color: transparent transparent transparent #ffffff;
 /*         .sb1-description-block h2.heading br {
     display: block;
 }  */
+.sb1-description-block .btn-bron_wrapper {
+    margin-top: 60px;
+}
 
 }
 @media screen and (max-width: 767px) {
@@ -3783,8 +3799,26 @@ section:not(.active) .sb3-slider-wrapper {
 
 .sb3-description-block .pre-text {
     padding-bottom: 4px;
+   
+}
+.sb-section-dark .sb3-description-block .pre-text {
     color: rgba(255, 255, 255, 0.6);
 }
+.sb-section-light .sb3-description-block .pre-text {
+    color: rgba(36, 43, 49, .6);
+}
+.sb3-description-block .pre-text > .date {
+    display: inline-block;
+    margin-left: 5px;
+    padding-left: 15px;
+    position: relative;
+}
+.sb3-description-block .pre-text > .date:before {
+    content:'•';
+    position: absolute;
+    left: 0;
+}
+
 .sb3-description-block h3.heading {
     padding-bottom: 25px;
   
@@ -4817,6 +4851,7 @@ line-height: 100%;
          font-size: 14px;
          letter-spacing: 0.1em;
          min-width: 300px;
+         border-radius: 0;
          text-transform: uppercase;
          -webkit-appearance: none;
             -moz-appearance: none;
@@ -4831,6 +4866,9 @@ line-height: 100%;
            border: 1px solid rgba(255, 255, 255, 0.2);
            background-image: url(../media/icons/arrow-down-dark.png);
        }
+       .sb5-section .sb5-description-block > .flex-block:first-child .select-custom.select-light {
+           background-image: url(../media/icons/arrow-down-white.png); 
+       }
 }
 @media screen and (max-width: 767px) {
     .sb5-slider-wrapper .swiper-wrapper {
@@ -4838,7 +4876,7 @@ line-height: 100%;
         margin: 0;
     }
     .sb-section .sb5-slider-wrapper.slider-wrapper.full-width {
-        padding-right: 20px;
+        padding-right: 30px;
     }
     .sb5-slider-wrapper.full-width .swiper-slide {
         -ms-flex-preferred-size: 100% !important;
@@ -4869,6 +4907,9 @@ line-height: 100%;
 @media screen and (max-width: 359px) {
     .sb5-description-wrapper .link-with-arrow {
         margin-left: 20px;
+    }
+    .sb-section .sb5-slider-wrapper.slider-wrapper.full-width {
+        padding-right: 20px;
     }
 }
 /* --- End Standart Block 05 CSS --- */

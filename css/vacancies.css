@@ -1,0 +1,17 @@
+@media screen and (max-width: 1199px) {
+.vacancies-page .sb-bg-block .sb4-bg-wrapper {
+    background-position: center;
+}
+
+.vacancies-page .sb-section .sb4-description-wrapper {
+  padding-top: 100px;
+}
+}
+@media screen and (max-width: 767px) {
+ .vacancies-page .sb-section .sb4-description-wrapper {
+     padding-top: 70px;
+ }
+  .vacancies-page .sb-section:first-child {
+    min-height: calc(100vh - 70px) !important;
+  }
+} 

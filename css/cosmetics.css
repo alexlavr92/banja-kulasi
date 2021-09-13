@@ -1,0 +1,15 @@
+.cosmetics-page .description-option:nth-child(2n) + .description-option {
+    margin-top: 10px;
+}
+
+@media screen and (min-width: 1200px) {
+    .cosmetics-page .sb1-description-block h2.heading {
+        margin-left: -7%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .cosmetics-page .sb1-description-block .btn-bron_wrapper {
+        width: calc(100% - 20px);
+    }
+}

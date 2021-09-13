@@ -548,7 +548,7 @@ jQuery(document).ready(function ($) {
     //----------------------//
 
     // Обработчик клика на кнопку вниз //
-    $('body').on('click', '.btn-section-wrapper > .arrow-down-link', function (e) {
+    $('body').on('click', '.btn-section-wrapper > .arrow-down-link, a[next-click]', function (e) { // новое 09092021
         var page_index
         if (docWidth >= 1200) {
             var page_index = $('section.active').next().index()

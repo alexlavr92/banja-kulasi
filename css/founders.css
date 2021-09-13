@@ -1,0 +1,17 @@
+.founders-page .sb1-description-wrapper {
+    position: initial;
+}
+
+.founders-page .description-text.scrollbar-inner h3 {
+    padding-bottom: 0;
+}
+
+.founders-page section:last-child a[next-click] {
+    display: none;
+}
+
+@media screen and (max-width: 767px) {
+   .founders-page .sb1-description-wrapper > .link-with-arrow {
+       display: none;
+   }
+}
