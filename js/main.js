@@ -583,6 +583,10 @@ jQuery(document).ready(function ($) {
                 bulletActiveClass: 'current',
                 type: 'bullets',
             },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
             effect: 'coverflow',
             coverflowEffect: {
                 depth: 50,
