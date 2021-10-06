@@ -1,3 +1,20 @@
-.bar-page .sb6-slider-wrapper.full-width .swiper-slide {
-    max-width: 952px;
+@media screen and (max-width: 1199px) {
+    .bar-page .sb5-description-wrapper .link-with-arrow {
+        position: relative;  
+        right: auto;
+        margin-left: 70px;
+        margin-top: 50px;
+      } 
+}
+
+@media screen and (max-width: 767px) {
+    .bar-page .sb5-description-wrapper .link-with-arrow {
+        margin-left: 30px;
+    }
+}
+
+@media screen and (max-width: 359px) {
+    .bar-page   .sb5-description-wrapper .link-with-arrow {
+        margin-left: 20px;
+    } 
 }
